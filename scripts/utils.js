@@ -4,8 +4,7 @@ export function delay(ms) {
     });
 }
 
-export function createObserver(selector, callback, once = false, options = {}) {
-    const elements = document.querySelectorAll(selector);
+export function createObserver(elements, callback, once = false, options = {}) {
     let observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry =>{
             if (entry.isIntersecting) {
@@ -16,15 +15,18 @@ export function createObserver(selector, callback, once = false, options = {}) {
             }
         });
     }, options);
-
-    elements.forEach(el => observer.observe(el));
+    if (elements.length) {
+        elements.forEach(el => observer.observe(el));
+    }
+    else {
+        observer.observe(elements);
+    }
 }
 
 export async function loop(project, frame, slideCount) {
-    console.log(project);
     let slides = [];
     for (let i = 0; i < slideCount; i++) {
-        slides[i] = `./images/slideshows/${project}/${project}-${i+1}.jpg`;
+        slides[i] = `../images/slideshows/${project}/${project}-${i+1}.jpg`;
     }
     let currentSlide = 0;
     while (true) {
