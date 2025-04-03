@@ -15,7 +15,7 @@ export function createObserver(elements, callback, once = false, options = {}) {
             }
         });
     }, options);
-    if (elements.length) {
+    if (NodeList.prototype.isPrototypeOf(elements) || Array.isArray(elements)) {
         elements.forEach(el => observer.observe(el));
     }
     else {
@@ -35,5 +35,3 @@ export async function loop(project, frame, slideCount) {
       currentSlide = (currentSlide + 1) % slideCount;
       }
 }
-
-
