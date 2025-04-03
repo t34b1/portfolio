@@ -4,8 +4,7 @@
 
 .screensaver {
     width: 100%;
-    height:100vh;
-    object-fit: stretch;
+    height:auto;
 }
 
 @keyframes moveIn {
