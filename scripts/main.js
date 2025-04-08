@@ -1,9 +1,12 @@
+const isLocal = location.hostname === "127.0.0.1" || location.hostname === "localhost";
+const base = isLocal ? "" : "/portfolio";
+
 const routes = {
-    "/nav": "nav.html",
-    "/main": "projects/main.html",
-    "/footer": "footer.html",
-    "/projects/m6": "projects/m6/mutesix.html",
-    "/projects/m6-1": "projects/m6/mutesix-1.html",
+    "/nav": `${base}/nav.html`,
+    "/main": `${base}/projects/main.html`,
+    "/footer": `${base}/footer.html`,
+    "/projects/m6": `${base}/projects/m6/mutesix.html`,
+    "/projects/m6-1": `${base}/projects/m6/mutesix-1.html`,
 };
 
 const app = document.querySelector("#app");
