@@ -1,9 +1,9 @@
 const routes = {
-    "/nav": "/nav.html",
-    "/main": "/projects/main.html",
-    "/footer": "/footer.html",
-    "/projects/m6": "/projects/m6/mutesix.html",
-    "/projects/m6-1": "/projects/m6/mutesix-1.html",
+    "/nav": "nav.html",
+    "/main": "projects/main.html",
+    "/footer": "footer.html",
+    "/projects/m6": "projects/m6/mutesix.html",
+    "/projects/m6-1": "projects/m6/mutesix-1.html",
 };
 
 const app = document.querySelector("#app");
