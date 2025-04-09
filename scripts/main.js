@@ -5,8 +5,8 @@ const routes = {
     "/nav": `${base}/nav.html`,
     "/main": `${base}/projects/main.html`,
     "/footer": `${base}/footer.html`,
-    "/m6": `${base}/projects/m6/mutesix.html`,
-    "/m6-1": `${base}/projects/m6/mutesix-1.html`,
+    "projects/m6": `${base}/projects/m6/mutesix.html`,
+    "projects/m6-1": `${base}/projects/m6/mutesix-1.html`,
 };
 
 const app = document.querySelector("#app");
@@ -34,7 +34,7 @@ async function navigate(event) {
     history.pushState({}, "", href);
     await load(app, href);
 
-    if (window.location.pathname.includes("/projects")) {
+    if (window.location.pathname.includes("projects")) {
         let page = 0;
         console.log(window.location.pathname);
         let nextPage = `${window.location.pathname}-${page +=1}`;
