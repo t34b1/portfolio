@@ -5,8 +5,8 @@ const routes = {
     "/nav": `${base}/nav.html`,
     "/main": `${base}/projects/main.html`,
     "/footer": `${base}/footer.html`,
-    "/projects/m6": `${base}/projects/m6/mutesix.html`,
-    "/projects/m6-1": `${base}/projects/m6/mutesix-1.html`,
+    "/m6": `${base}/projects/m6/mutesix.html`,
+    "/m6-1": `${base}/projects/m6/mutesix-1.html`,
 };
 
 const app = document.querySelector("#app");
