@@ -64,12 +64,12 @@ const lazyLoadObserver = new IntersectionObserver((entries) => {
 });
 
 
-load(nav, "/nav");
-load(app, "/main");
 nav.addEventListener("click", navigate);
 app.addEventListener("click", navigate);
-
+window.addEventListener("load", () => {
+    load(nav, "/nav");
+    handleHashChange();
+}); 
 
 window.addEventListener("hashchange", handleHashChange);
-window.addEventListener("load", handleHashChange); 
 
