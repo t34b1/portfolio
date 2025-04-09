@@ -14,6 +14,12 @@ const nav = document.querySelector("#nav");
 const footer = document.querySelector("#footer");
 
 async function load(destination = app, path) {
+    console.log("Fetching " + routes[path]);
+    const response = await fetch(routes[path]);
+    if (!response.ok) {
+        console.error(`Failed to load ${routes[path]} — ${response.status}`);
+        return;
+      }
     const html = await fetch(routes[path]).then(response=>response.text());
     destination.innerHTML = html;
 }
@@ -32,10 +38,14 @@ async function loadNext(destination = app, path) {
 }
 
 async function navigate(event) {
+    isLocal ? console.log("Local server") : console.log("Github server. Base: " + base);
     event.preventDefault();
     const link = event.target.closest("a");
     if (!link) return;
     const href = link.getAttribute('href');
+    if (href.includes("/projects")) {
+        console.log("its a project");
+    };
     history.pushState({}, "", href);
     await load(app, href);
 
