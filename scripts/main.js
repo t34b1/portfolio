@@ -5,8 +5,8 @@ const routes = {
     "/nav": `${base}/nav.html`,
     "/main": `${base}/projects/main.html`,
     "/footer": `${base}/footer.html`,
-    "projects/m6": `${base}/projects/m6/mutesix.html`,
-    "projects/m6-1": `${base}/projects/m6/mutesix-1.html`,
+    "/projects/m6": `${base}/projects/m6/mutesix.html`,
+    "/projects/m6-1": `${base}/projects/m6/mutesix-1.html`,
 };
 
 const app = document.querySelector("#app");
@@ -19,7 +19,12 @@ async function load(destination = app, path) {
 }
 
 async function loadNext(destination = app, path) {
-    const html = await fetch(routes[path]).then(response=>response.text());
+    const response = await fetch(routes[path]);
+    if (!response.ok) {
+        console.error(`Failed to load ${routes[path]} — ${response.status}`);
+        return;
+      }
+    const html = await response.text();
     const page = document.createElement("div");
     page.classList.add("page");
     page.innerHTML = html;
@@ -34,12 +39,14 @@ async function navigate(event) {
     history.pushState({}, "", href);
     await load(app, href);
 
+    /*
     if (window.location.pathname.includes("projects")) {
         let page = 0;
         console.log(window.location.pathname);
-        let nextPage = `${window.location.pathname}-${page +=1}`;
+        let nextPage =  `${base}/projects/m6/mutesix-1.html`;
         loadNext(app, nextPage);
     }
+        */
     return;
 }
 
