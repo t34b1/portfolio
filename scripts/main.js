@@ -174,11 +174,11 @@ function addLazyTargetTo(container) {
 
 nav.addEventListener("click", navigate);
 app.addEventListener("click", navigate);
-window.addEventListener("load", () => {
+
+
+window.addEventListener("DOMContentLoaded", () => {
     load("/nav", nav, true);
-    if (!currentPath) {
-        load("/main-0", app, true);
-    }
-}); 
+    handleHashChange();
+  });
 
 window.addEventListener("hashchange", handleHashChange);
