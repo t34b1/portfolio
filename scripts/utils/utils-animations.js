@@ -48,8 +48,7 @@ export function hydrateImages(container) {
     }
   
     images.forEach(img => {
-        console.log("Placing image");
-      img.src = img.dataset.src;
+      img.src = base + img.dataset.src;
       img.removeAttribute("data-src");
     });
   }
