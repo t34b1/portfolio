@@ -55,8 +55,8 @@ export async function load(path, destination = app, lazyLoad = true) {
         const html = await getPage(path);
         destination.innerHTML = html;
         //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
-        hydrateImages(html);
-        
+        hydrateImages(destination);
+
         if(path.includes("/nav")) {
             return;
         }
