@@ -1,4 +1,4 @@
-import {load, navigate, handleHashChange} from './utils-routing.js';
+import {load, navigate, handleHashChange} from './utils/utils-routing.js';
 
 const app = document.querySelector("#app");
 const nav = document.querySelector("#nav");
@@ -11,3 +11,5 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
 window.addEventListener("hashchange", handleHashChange);
+
+

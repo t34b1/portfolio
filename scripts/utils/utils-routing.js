@@ -1,4 +1,4 @@
-import {addLazyTargetTo} from './utils-animations.js';
+import {addLazyTargetTo, hydrateImages} from './utils-animations.js';
 
 export const isLocal = location.hostname === "127.0.0.1" || location.hostname === "localhost";
 export const base = isLocal ? "" : "/portfolio";
@@ -55,6 +55,8 @@ export async function load(path, destination = app, lazyLoad = true) {
         const html = await getPage(path);
         destination.innerHTML = html;
         //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
+        hydrateImages(html);
+        
         if(path.includes("/nav")) {
             return;
         }
@@ -91,11 +93,13 @@ export async function load(path, destination = app, lazyLoad = true) {
     return;
 }
 
+
 export async function append(path, destination) {
     const content = await getPage(path);
     const page = document.createElement("div");
     page.classList.add("page");
     page.innerHTML = content;
+    hydrateImages(page);
     destination.append(page); 
     return page;
 }

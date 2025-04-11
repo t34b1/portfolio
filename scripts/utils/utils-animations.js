@@ -1,5 +1,5 @@
 import {createObserver} from './utils.js';
-import {load, state, getNextPath} from './utils-routing.js';
+import {load, state, getNextPath, base} from './utils-routing.js';
 
 export function addLazyTargetTo(container) {
     function lazyLoad(entry, state, destination) {
@@ -36,3 +36,20 @@ export function delay(ms) {
         setTimeout(() => resolve(), ms);
     });
 }
+
+export function hydrateImages(container) {
+    if (!(container instanceof Element)) {
+      return;
+    }
+  
+    const images = container.querySelectorAll("img[data-src]");
+    if (!images) {
+        return;
+    }
+  
+    images.forEach(img => {
+        console.log("Placing image");
+      img.src = img.dataset.src;
+      img.removeAttribute("data-src");
+    });
+  }
