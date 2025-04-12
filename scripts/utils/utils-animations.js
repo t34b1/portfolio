@@ -1,30 +1,46 @@
 import {createObserver} from './utils.js';
 import {load, state, getNextPath, base} from './utils-routing.js';
 
+export const animations = {
+    "img[data-src]": hydrateImage,
+    ".loop": loop,
+
+}
+
+export function animate(target, callback) {
+    const elements = document.querySelectorAll(target);
+    //console.log(`Found ${elements.length} for "${target}"`);
+    elements.forEach(callback);
+}
+
 export function addLazyTargetTo(container) {
-    function lazyLoad(entry, state, destination) {
-        if (!entry.isIntersecting) return;
-
-        const next = getNextPath(state.currentPath);
-        if (next) {
-            load(next, destination, false);
-        }
-    }  
-
     const lazyTarget = document.createElement("div");
     lazyTarget.classList.add("lazy-target");
     container.prepend(lazyTarget);
-    createObserver(lazyTarget, (entry) => lazyLoad(entry, state, container), true);
-}
+  
+    const onIntersect = (entry) => {
+      if (!entry.isIntersecting) return;
+  
+      //state.nextPath = getNextPath(state.currentPath);
+      if (state.nextPath) {
+        load(state.nextPath, container, true);
+      }
+    };
+  
+    createObserver(lazyTarget, onIntersect, true);
+  }
  
-export async function loop(project, frame, slideCount) {
+export async function loop(container) {
+    let project = container.dataset.project;
+    let slideCount = container.dataset.slideCount;
+   
     let slides = [];
     for (let i = 0; i < slideCount; i++) {
-        slides[i] = `../images/slideshows/${project}/${project}-${i+1}.jpg`;
+        slides[i] = `../../images/slideshows/${project}/${project}-${i+1}.jpg`;
     }
     let currentSlide = 0;
     while (true) {
-      frame.src = slides[currentSlide];
+      container.src = slides[currentSlide];
       await delay(1000);
       currentSlide = (currentSlide + 1) % slideCount;
       }
@@ -37,18 +53,12 @@ export function delay(ms) {
     });
 }
 
-export function hydrateImages(container) {
-    if (!(container instanceof Element)) {
-      return;
-    }
-  
-    const images = container.querySelectorAll("img[data-src]");
-    if (!images) {
-        return;
-    }
-  
-    images.forEach(img => {
-      img.src = base + img.dataset.src;
-      img.removeAttribute("data-src");
-    });
+
+export function hydrateImage(image) {
+      if (!(image instanceof Element)) {
+          return;
+      }
+      image.src = base + image.dataset.src;
+      image.removeAttribute("data-src");
   }
+  

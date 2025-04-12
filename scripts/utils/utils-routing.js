@@ -1,121 +1,113 @@
-import {addLazyTargetTo, hydrateImages} from './utils-animations.js';
+import { animations, animate, addLazyTargetTo } from "./utils-animations.js";
 
-export const isLocal = location.hostname === "127.0.0.1" || location.hostname === "localhost";
+export const isLocal =
+  location.hostname === "127.0.0.1" || location.hostname === "localhost";
 export const base = isLocal ? "" : "/portfolio";
-export const state = { currentPath: "" };
-
-export const routes = {
-    "/nav": "/nav.html",
-    "/main-0": "/projects/main.html",
-    "/footer": "/footer.html",
-    "/projects/m6-0": "/projects/m6/mutesix.html",
-    "/projects/m6-1": "/projects/m6/mutesix-1.html",
-    "/projects/m6-2": "/projects/m6/mutesix-2.html",
-    "/projects/m6-3": "/projects/m6/mutesix-3.html",
+export const state = {
+  currentPath: "",
+  nextPath: "",
 };
 
+export const routes = {
+  "/nav": "/nav.html",
+  "/main-0": "/projects/main.html",
+  "/footer": "/footer.html",
+  "/projects/m6-0": "/projects/m6/mutesix.html",
+  "/projects/m6-1": "/projects/m6/mutesix-1.html",
+  "/projects/m6-2": "/projects/m6/mutesix-2.html",
+  "/projects/m6-3": "/projects/m6/mutesix-3.html",
+  "/projects/m6-4": "/projects/m6/mutesix-4.html",
+};
+
+function updateState(path) {
+  state.currentPath = path;
+  state.nextPath = getNextPath(path);
+}
 export async function getPage(path) {
-    if (!routes[path]) {
-        console.error(`No route found for path: ${path}`);
-        return;
-    }
-    const response = await fetch(base + routes[path]);
-    if (!response.ok) {
-        console.error(`Failed to load ${base}${routes[path]} — ${response.status}`);
-        return;
-        }
-    const html = await response.text();
-    return html;
+  if (!routes[path]) {
+    console.error(`No route found for path: ${path}`);
+    return;
+  }
+  const response = await fetch(base + routes[path]);
+  if (!response.ok) {
+    console.error(`Failed to load ${base}${routes[path]} — ${response.status}`);
+    return;
+  }
+  const html = await response.text();
+  return html;
 }
 
 export function getNextPath(basePath) {
-    if (basePath.includes("/nav")) {
-        return null;
-    }
+  if (basePath.includes("/nav")) {
+    return null;
+  }
 
-    let current = parseInt(basePath.split("-")[1] || "0");
-    basePath = basePath.includes("-") ? basePath.split("-")[0] : basePath;
-    
-    let nextPath = `${basePath}-${current + 1}`;
-    //console.log("From getNextPath: nextPath: " + nextPath);
+  let current = parseInt(basePath.split("-")[1] || "0");
+  basePath = basePath.includes("-") ? basePath.split("-")[0] : basePath;
 
-    if (!routes[nextPath]) {
-        return null;
-    }
+  let nextPath = `${basePath}-${current + 1}`;
+  // console.log("From getNextPath: nextPath: " + nextPath);
 
-    return nextPath;
+  if (!routes[nextPath]) {
+    return null;
+  }
+
+  return nextPath;
 }
 
-export async function load(path, destination = app, lazyLoad = true) {
-    //console.log("Path passed into load: " + path);
-    if (path == null) {
-        return;
-    }
-    if (path.includes("-0") || path.includes("/nav")) {
-        const html = await getPage(path);
-        destination.innerHTML = html;
-        //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
-        hydrateImages(destination);
+export async function load(path, destination = app, lazyLoad = false) {
+  //console.log("Loading... Path passed into load: " + path);
+  if (path == null) return;
 
-        if(path.includes("/nav")) {
-            return;
-        }
-        else {
-            state.currentPath = path;
-        }
-    }
-    
-    if (lazyLoad) {
-        let nextPath = getNextPath(path);
-        //console.log("From Load: Next path: " + nextPath);
+  const isInitialPage = path.includes("-0") || path.includes("/nav");
+  const isProjectsPage = path.includes("/projects");
+  const isNav = path.includes("/nav");
 
-        if (!routes[nextPath]) {
-            //console.log("From load: Checking route. Path doesn't exist. Ignored");
-            return;
-        }
-    
-        if (nextPath) {
-            addLazyTargetTo(await append(nextPath, destination));
-            //console.log("Appended " + nextPath + " to " + page + " to " + (destination.id || destination.classList));
-            state.currentPath = nextPath;
-        }
-        else {
-            return;   
-        }
+  if (isInitialPage) {
+    destination.innerHTML = "";
+    await append(path, destination);
+    updateState(path);
+    //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
+    if (isNav) return;
+    if (isProjectsPage && state.nextPath) {
+        load(state.nextPath, destination, true);
     }
+  }
+  
+  if (lazyLoad) {
+    if (!routes[path]) return;
+    addLazyTargetTo(await append(path, destination, true));
+    //console.log("Appended " + path + " to " + (destination.id || destination.classList) + " with lazyLoad");
+  }
 
-    else {
-        addLazyTargetTo(await append(path, destination));
-        //console.log("Appended " + path + " to " + page + " to " + (destination.id || destination.classList));
-        state.currentPath = path;
-    }
-   
-    return;
+  for (let selector in animations) {
+    animate(selector, animations[selector]);
+  }
+  return;
 }
-
 
 export async function append(path, destination) {
-    const content = await getPage(path);
-    const page = document.createElement("div");
-    page.classList.add("page");
-    page.innerHTML = content;
-    hydrateImages(page);
-    destination.append(page); 
-    return page;
+  const html = await getPage(path);
+  const page = document.createElement("div");
+  page.classList.add("page");
+  page.innerHTML = html;
+  destination.append(page);
+  updateState(path);
+  return page;
 }
 
 export async function navigate(event) {
-    const link = event.target.closest("a");
-    if (!link) return;
+  const link = event.target.closest("a");
+  if (!link) return;
 
-    event.preventDefault();
-    const href = link.getAttribute('href');
-    location.hash = href;
-    return;
+  event.preventDefault();
+  const href = link.getAttribute("href");
+  location.hash = href;
+  return;
 }
 
 export function handleHashChange(event) {
-    const path = location.hash.replace("#", "") || "/main-0";
-    state.currentPath = path;
-    load(path, app);
+  const path = location.hash.replace("#", "") || "/main-0";
+  updateState(path);
+  load(path, app, false);
 }
