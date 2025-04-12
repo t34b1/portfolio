@@ -36,7 +36,7 @@ export async function loop(container) {
    
     let slides = [];
     for (let i = 0; i < slideCount; i++) {
-        slides[i] = `../../images/slideshows/${project}/${project}-${i+1}.jpg`;
+        slides[i] = `${base}/images/slideshows/${project}/${project}-${i+1}.jpg`;
     }
     let currentSlide = 0;
     while (true) {
