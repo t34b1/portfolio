@@ -12,12 +12,34 @@ export const routes = {
   "/nav": "/nav.html",
   "/main-0": "/projects/main.html",
   "/footer": "/footer.html",
-  "/projects/m6-0": "/projects/m6/mutesix.html",
+  "/footer": "/footer.html",
+  "/hero": "/projects/hero.html",
+
+  "/projects/m6-0": "/projects/m6/mutesix-0.html",
   "/projects/m6-1": "/projects/m6/mutesix-1.html",
   "/projects/m6-2": "/projects/m6/mutesix-2.html",
   "/projects/m6-3": "/projects/m6/mutesix-3.html",
-  "/projects/m6-4": "/projects/m6/mutesix-4.html",
-};
+
+  "/projects/wnrs-0": "/projects/wnrs/wnrs-0.html",
+  "/projects/wnrs-1": "/projects/wnrs/wnrs-1.html",
+  "/projects/wnrs-2": "/projects/wnrs/wnrs-2.html",
+  "/projects/wnrs-3": "/projects/wnrs/wnrs-3.html",
+  "/projects/wnrs-4": "/projects/wnrs/wnrs-4.html",
+  "/projects/wnrs-5": "/projects/wnrs/wnrs-5.html",
+  "/projects/wnrs-6": "/projects/wnrs/wnrs-6.html",
+
+  "/projects/wnrs-brand": "/projects/wnrs/brand-grid.html",
+  "/projects/sl-0": "/projects/self-love-edition/sl-0.html",
+  "/projects/sl-1": "/projects/self-love-edition/sl-1.html",
+
+  "/projects/misc-0": "/projects/misc/misc-0.html",
+  "/projects/misc-1": "/projects/misc/misc-1.html",
+
+
+
+
+}
+
 
 function updateState(path) {
   state.currentPath = path;
@@ -35,6 +57,13 @@ export async function getPage(path) {
   }
   const html = await response.text();
   return html;
+}
+
+export function getPath(hash) {
+  if (!routes[hash]) {
+    return null;
+  }
+  return routes[hash];
 }
 
 export function getNextPath(basePath) {
@@ -70,6 +99,7 @@ export async function load(path, destination = app, lazyLoad = false) {
     //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
     if (isNav) return;
     if (isProjectsPage && state.nextPath) {
+      console.log("Loading next");
         load(state.nextPath, destination, true);
     }
   }

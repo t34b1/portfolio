@@ -1,9 +1,13 @@
 import {createObserver} from './utils.js';
-import {load, state, getNextPath, base} from './utils-routing.js';
+import {load, state, getPath, getNextPath, getPage, base} from './utils-routing.js';
+
 
 export const animations = {
-    "img[data-src]": hydrateImage,
+    "img[data-src]": hydrate,
     ".loop": loop,
+    "#brand-grid": hydrate,
+    ".hero": lazyLoadiFrame,
+    "#brand-grid": lazyLoadiFrame,
 
 }
 
@@ -54,11 +58,89 @@ export function delay(ms) {
 }
 
 
-export function hydrateImage(image) {
-      if (!(image instanceof Element)) {
+export async function hydrate(element) {
+      if (!(element instanceof Element)) {
           return;
       }
-      image.src = base + image.dataset.src;
-      image.removeAttribute("data-src");
+
+      if (element.matches("IMG")) {
+        element.src = base + element.dataset.src;
+        element.removeAttribute("data-src");
+      }
+
+      if (element.matches("DIV")) {
+        console.log("path: " + element.dataset.href);
+        const page = document.createElement("div");
+        page.innerHTML = await getPage(element.dataset.href);
+        page.classList.add("hydrated-page");
+        element.innerHTML = "";
+        element.append(page);
+        console.log("Container: " + element.id);
+      }
+      
   }
   
+
+export async function hydrateHTML(container) {
+    if (!(container instanceof Element)) {
+        return;
+    }
+    console.log("path: " + container.dataset.href);
+    const page = document.createElement("div");
+    page.innerHTML = await getPage(container.dataset.href);
+    page.classList.add("hydrated-page");
+    container.innerHTML = "";
+    container.append(page);
+    console.log("Container: " + container.id);
+}
+
+
+export function lazyLoadiFrame(container) {
+  if (container.querySelector("IFRAME")) {
+    return;
+  }
+
+  let iframe = null;
+  let isVisible = false;
+  let path = getPath(container.dataset.src);
+
+  const createIframe = () => {
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+      iframe.src = base + path;
+      iframe.setAttribute("loading", "lazy");
+      container.appendChild(iframe);
+      console.log("iframe created");
+    }
+  };
+
+  const destroyIframe = () => {
+    if (iframe) {
+      container.removeChild(iframe);
+      iframe = null;
+      console.log("iframe removed");
+
+    }
+  };
+
+  function handleiFrame(entry) {
+    isVisible = entry.isIntersecting;
+    if (isVisible && !iframe && !document.hidden) {
+      createIframe();
+    }
+    if (!isVisible && iframe) {
+      destroyIframe();
+    }
+  }
+
+  createObserver(container, handleiFrame, false, { threshold: 0 });
+
+  // 👁️ Tab visibility handler
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      destroyIframe();
+    } else if (isVisible && !container.querySelector("IFRAME")) {
+      createIframe();
+    }
+  });
+}

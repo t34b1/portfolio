@@ -1,11 +1,10 @@
 export function createObserver(elements, callback, once = false, options = {}) {
     let observer = new IntersectionObserver((entries, observer) => {
+        
         entries.forEach(entry =>{
-            if (entry.isIntersecting) {
-                callback(entry);
-                if (once == true) {
-                    observer.unobserve(entry.target);
-                } 
+            callback(entry);
+            if (once === true && entry.isIntersecting) {
+                observer.unobserve(entry.target);
             }
         });
     }, options);
@@ -16,5 +15,4 @@ export function createObserver(elements, callback, once = false, options = {}) {
         observer.observe(elements);
     }
 }
-
 
