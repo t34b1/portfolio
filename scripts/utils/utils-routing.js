@@ -1,4 +1,4 @@
-import { animations, animate, addLazyTargetTo, updateSideInfo, updateRole } from "./utils-animations.js";
+import { animations, animate, addLazyTargetTo} from "./utils-animations.js";
 
 export const isLocal =
   location.hostname === "127.0.0.1" || location.hostname === "localhost";
@@ -105,23 +105,73 @@ export async function load(path, destination = app, lazyLoad = false) {
   const isSidebar = path.includes("/sidebar");
   const isMain = path.includes("/main");
 
+  async function updateSideInfo(path) {
+    if (isNav || isMain) return;
+
+    const info = document.querySelector(".info");  
+    let sidebarPath = getBasePath(path) + "-info";
+    console.log("Updating sidebar with path: " + sidebarPath);
+
+    if (routes[sidebarPath]) {
+      if (!info) {
+        console.log("infobar not found");
+        return;
+      }
+      info.innerHTML = "";
+
+      let newInfo = await getPage(sidebarPath);
+      info.innerHTML = newInfo;
+      return newInfo;
+    }
+    else {
+      //console.log("No sidebar path found");
+      sidebarPath = "/main-info";
+      updateSideInfo(sidebarPath);
+    return;
+    }
+  }
+
+  async function updateRole(path) {
+    let roles = {
+      main: "",
+      wnrs: `<span class = "label">SENIOR DIGITAL DESIGNER</span><br>
+        <span class = "label">2022 - 2025</span><br></br>`,
+      m6: `<span class = "label">SENIOR DIGITAL DESIGN MANAGER</span><br>
+      <span class = "label">2020 - 2022</span><br></br>`,
+      misc: `<span class = "label">DESIGNER</span><br>
+      <span class = "label">2016 - NOW</span><br></br>`, 
+    };
+  
+    for (let place in roles) {
+      if (path.includes(place)) {
+        let overlay = document.querySelector(".overlay");
+  
+        overlay.classList.remove("slide-down");
+        void overlay.offsetWidth; 
+        
+        overlay.innerHTML = roles[place];
+        overlay.classList.add("slide-down");
+      }
+    }
+  }
+
   if (isInitialPage) {
     destination.innerHTML = "";
     let page = await append(path, destination);
     updateState(path);
     //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
 
-    
     if (isMain) page.className = "appended-page";
-    updateSideInfo(path);
-    updateRole(path);
     if (isNav || isSidebar ) return;
 
     page.classList.remove("slide-in");
     void page.offsetWidth; // force reflow
     page.classList.add("slide-in"); 
-   
 
+    updateSideInfo(path);
+    updateRole(path);
+  
+  
     if (isProjectsPage && state.nextPath) {
       //console.log("Loading next");
       load(state.nextPath, destination, true);
