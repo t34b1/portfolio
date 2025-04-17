@@ -121,11 +121,10 @@ export async function load(path, destination = app, lazyLoad = false) {
       info.innerHTML = "";
       let newInfo = await getPage(sidebarPath);
       await append(sidebarPath, info);
-      console.log("Sidebar updated with: " + newInfo);
+      //console.log("Sidebar updated with: " + newInfo);
 
       
-      
-      console.log("Hydrated content:", sidebar.querySelectorAll("img"));
+      //console.log("Hydrated content:", sidebar.querySelectorAll("img"));
       return newInfo;
     }
     else {
@@ -195,11 +194,13 @@ export async function load(path, destination = app, lazyLoad = false) {
     addLazyTargetTo(await append(path, destination, true));
     //console.log("Appended " + path + " to " + (destination.id || destination.classList) + " with lazyLoad");
   }
-
+  
   for (let selector in animations) {
-    animate(selector, animations[selector]);
+    animate(selector, destination, animations[selector]);
   }
   return;
+
+  
 }
 
 export async function append(path, destination) {
