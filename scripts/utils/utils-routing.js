@@ -121,6 +121,11 @@ export async function load(path, destination = app, lazyLoad = false) {
 
       let newInfo = await getPage(sidebarPath);
       info.innerHTML = newInfo;
+
+      for (let selector in animations) {
+        animate(selector, animations[selector]);
+      }
+      
       return newInfo;
     }
     else {
@@ -129,6 +134,8 @@ export async function load(path, destination = app, lazyLoad = false) {
       updateSideInfo(sidebarPath);
     return;
     }
+
+    
   }
 
   async function updateRole(path) {
