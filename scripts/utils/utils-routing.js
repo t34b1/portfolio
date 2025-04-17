@@ -110,6 +110,7 @@ export async function load(path, destination = app, lazyLoad = false) {
 
     const info = document.querySelector(".info");  
     let sidebarPath = getBasePath(path) + "-info";
+  
     console.log("Updating sidebar with path: " + sidebarPath);
 
     if (routes[sidebarPath]) {
@@ -118,15 +119,13 @@ export async function load(path, destination = app, lazyLoad = false) {
         return;
       }
       info.innerHTML = "";
-
       let newInfo = await getPage(sidebarPath);
-      info.innerHTML = newInfo;
+      await append(sidebarPath, info);
       console.log("Sidebar updated with: " + newInfo);
 
-      animations["img[data-src]"]();
       
       
-      console.log("Hydrated content:", info.querySelectorAll("img"));
+      console.log("Hydrated content:", sidebar.querySelectorAll("img"));
       return newInfo;
     }
     else {
@@ -161,6 +160,10 @@ export async function load(path, destination = app, lazyLoad = false) {
         overlay.classList.add("slide-down");
       }
     }
+  }
+
+  if (isSidebar) {
+    animations["img[data-src]"]();
   }
 
   if (isInitialPage) {
