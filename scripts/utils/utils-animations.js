@@ -64,6 +64,7 @@ export async function hydrate(element) {
 
       if (element.matches("IMG")) {
         element.src = base + element.dataset.src;
+        console.log("Element hydrated: " + element.src);
         element.removeAttribute("data-src");
       }
 
@@ -76,6 +77,8 @@ export async function hydrate(element) {
         element.append(page);
         console.log("Container: " + element.id);
       }
+
+      
       
   }
   

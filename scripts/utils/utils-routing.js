@@ -106,7 +106,7 @@ export async function load(path, destination = app, lazyLoad = false) {
   const isMain = path.includes("/main");
 
   async function updateSideInfo(path) {
-    if (isNav || isMain) return;
+    if (isNav) return;
 
     const info = document.querySelector(".info");  
     let sidebarPath = getBasePath(path) + "-info";
@@ -121,11 +121,12 @@ export async function load(path, destination = app, lazyLoad = false) {
 
       let newInfo = await getPage(sidebarPath);
       info.innerHTML = newInfo;
+      console.log("Sidebar updated with: " + newInfo);
 
-      for (let selector in animations) {
-        animate(selector, animations[selector]);
-      }
+      animations["img[data-src]"]();
       
+      
+      console.log("Hydrated content:", info.querySelectorAll("img"));
       return newInfo;
     }
     else {
@@ -148,11 +149,11 @@ export async function load(path, destination = app, lazyLoad = false) {
       misc: `<span class = "label">DESIGNER</span><br>
       <span class = "label">2016 - NOW</span><br></br>`, 
     };
-  
+
     for (let place in roles) {
       if (path.includes(place)) {
         let overlay = document.querySelector(".overlay");
-  
+
         overlay.classList.remove("slide-down");
         void overlay.offsetWidth; 
         
@@ -176,6 +177,7 @@ export async function load(path, destination = app, lazyLoad = false) {
     page.classList.add("slide-in"); 
 
     updateSideInfo(path);
+    console.log("Updated side info");
     updateRole(path);
   
   
