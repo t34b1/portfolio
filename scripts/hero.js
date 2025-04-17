@@ -9,9 +9,9 @@ let flipTimers = [];
 function setup() {
   console.log("starting animation");
 
-  createCanvas(windowWidth * 1.05, windowHeight * 1.05);
+  createCanvas(windowWidth * 1.01, windowHeight * 1.01);
   textFont('monospace');
-  textSize(cellSize * 1);
+  textSize(cellSize * .8);
   textAlign(CENTER, CENTER);
   cols = floor(width / cellSize);
   rows = floor(height / cellSize);

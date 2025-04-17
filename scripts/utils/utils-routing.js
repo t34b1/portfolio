@@ -1,4 +1,4 @@
-import { animations, animate, addLazyTargetTo } from "./utils-animations.js";
+import { animations, animate, addLazyTargetTo, updateSideInfo, updateRole } from "./utils-animations.js";
 
 export const isLocal =
   location.hostname === "127.0.0.1" || location.hostname === "localhost";
@@ -11,14 +11,18 @@ export const state = {
 export const routes = {
   "/nav": "/nav.html",
   "/main-0": "/projects/main.html",
+  "/main-info": "/projects/main-info.html",
   "/footer": "/footer.html",
-  "/footer": "/footer.html",
+  "/sidebar": "/sidebar.html",
+
   "/hero": "/projects/hero.html",
 
   "/projects/m6-0": "/projects/m6/mutesix-0.html",
   "/projects/m6-1": "/projects/m6/mutesix-1.html",
   "/projects/m6-2": "/projects/m6/mutesix-2.html",
   "/projects/m6-3": "/projects/m6/mutesix-3.html",
+  "/projects/m6-info": "/projects/m6/mutesix-info.html",
+
 
   "/projects/wnrs-0": "/projects/wnrs/wnrs-0.html",
   "/projects/wnrs-1": "/projects/wnrs/wnrs-1.html",
@@ -26,7 +30,8 @@ export const routes = {
   "/projects/wnrs-3": "/projects/wnrs/wnrs-3.html",
   "/projects/wnrs-4": "/projects/wnrs/wnrs-4.html",
   "/projects/wnrs-5": "/projects/wnrs/wnrs-5.html",
-  "/projects/wnrs-6": "/projects/wnrs/wnrs-6.html",
+  "/projects/wnrs-info": "/projects/wnrs/wnrs-info.html",
+
 
   "/projects/wnrs-brand": "/projects/wnrs/brand-grid.html",
   "/projects/sl-0": "/projects/self-love-edition/sl-0.html",
@@ -45,6 +50,7 @@ function updateState(path) {
   state.currentPath = path;
   state.nextPath = getNextPath(path);
 }
+
 export async function getPage(path) {
   if (!routes[path]) {
     console.error(`No route found for path: ${path}`);
@@ -66,16 +72,20 @@ export function getPath(hash) {
   return routes[hash];
 }
 
-export function getNextPath(basePath) {
-  if (basePath.includes("/nav")) {
+function getBasePath(path) {
+  return path.includes("-") ? path.split("-")[0] : path; 
+}
+
+export function getNextPath(path) {
+  
+  if (path.includes("/nav")) {
     return null;
   }
 
-  let current = parseInt(basePath.split("-")[1] || "0");
-  basePath = basePath.includes("-") ? basePath.split("-")[0] : basePath;
-
-  let nextPath = `${basePath}-${current + 1}`;
-  // console.log("From getNextPath: nextPath: " + nextPath);
+  let current = parseInt(path.split("-")[1] || "0");
+  path = getBasePath(path);
+  let nextPath = `${path}-${current + 1}`;
+  //console.log("From getNextPath: nextPath: " + nextPath);
 
   if (!routes[nextPath]) {
     return null;
@@ -84,23 +94,37 @@ export function getNextPath(basePath) {
   return nextPath;
 }
 
+
 export async function load(path, destination = app, lazyLoad = false) {
   //console.log("Loading... Path passed into load: " + path);
   if (path == null) return;
 
-  const isInitialPage = path.includes("-0") || path.includes("/nav");
+  const isInitialPage = path.includes("-0") || path.includes("/nav") || path.includes("/sidebar");
   const isProjectsPage = path.includes("/projects");
   const isNav = path.includes("/nav");
+  const isSidebar = path.includes("/sidebar");
+  const isMain = path.includes("/main");
 
   if (isInitialPage) {
     destination.innerHTML = "";
-    await append(path, destination);
+    let page = await append(path, destination);
     updateState(path);
     //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
-    if (isNav) return;
+
+    
+    if (isMain) page.className = "appended-page";
+    updateSideInfo(path);
+    updateRole(path);
+    if (isNav || isSidebar ) return;
+
+    page.classList.remove("slide-in");
+    void page.offsetWidth; // force reflow
+    page.classList.add("slide-in"); 
+   
+
     if (isProjectsPage && state.nextPath) {
-      console.log("Loading next");
-        load(state.nextPath, destination, true);
+      //console.log("Loading next");
+      load(state.nextPath, destination, true);
     }
   }
   
@@ -136,8 +160,13 @@ export async function navigate(event) {
   return;
 }
 
-export function handleHashChange(event) {
+export async function handleHashChange(event) {
   const path = location.hash.replace("#", "") || "/main-0";
   updateState(path);
-  load(path, app, false);
+  await load(path, app, false);
+
+  document.querySelector("#sidebar").scrollTo({
+    top: 0,
+    behavior: "smooth" 
+  });
 }

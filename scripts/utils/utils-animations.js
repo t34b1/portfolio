@@ -5,7 +5,6 @@ import {load, state, getPath, getNextPath, getPage, base} from './utils-routing.
 export const animations = {
     "img[data-src]": hydrate,
     ".loop": loop,
-    "#brand-grid": hydrate,
     ".hero": lazyLoadiFrame,
     "#brand-grid": lazyLoadiFrame,
 
@@ -88,7 +87,7 @@ export async function hydrateHTML(container) {
     console.log("path: " + container.dataset.href);
     const page = document.createElement("div");
     page.innerHTML = await getPage(container.dataset.href);
-    page.classList.add("hydrated-page");
+    page.classList.add("appended-page");
     container.innerHTML = "";
     container.append(page);
     console.log("Container: " + container.id);
@@ -109,7 +108,8 @@ export function lazyLoadiFrame(container) {
       iframe = document.createElement("iframe");
       iframe.src = base + path;
       iframe.setAttribute("loading", "lazy");
-      container.appendChild(iframe);
+      iframe.classList.add("appended-page");
+      container.append(iframe);
       console.log("iframe created");
     }
   };
@@ -143,4 +143,45 @@ export function lazyLoadiFrame(container) {
       createIframe();
     }
   });
+}
+
+export async function updateSideInfo(path) {
+  const info = document.querySelector(".info");
+  let sidebarPath = getBasePath(path) + "-info";
+  if (routes[sidebarPath]) {
+    info.innerHTML = "";
+    let newInfo = await getPage(sidebarPath);
+    info.innerHTML = newInfo;
+    return newInfo;
+  }
+  else {
+    //console.log("No sidebar path found");
+    sidebarPath = "/main-info";
+    updateSideInfo(sidebarPath);
+  return;
+  }
+}
+
+export async function updateRole(path) {
+  let roles = {
+    main: "",
+    wnrs: `<span class = "label">SENIOR DIGITAL DESIGNER</span><br>
+      <span class = "label">2022 - 2025</span><br></br>`,
+    m6: `<span class = "label">SENIOR DIGITAL DESIGN MANAGER</span><br>
+    <span class = "label">2020 - 2022</span><br></br>`,
+    misc: `<span class = "label">DESIGNER</span><br>
+    <span class = "label">2016 - NOW</span><br></br>`, 
+  };
+
+  for (let place in roles) {
+    if (path.includes(place)) {
+      let overlay = document.querySelector(".overlay");
+
+      overlay.classList.remove("slide-down");
+      void overlay.offsetWidth; 
+      
+      overlay.innerHTML = roles[place];
+      overlay.classList.add("slide-down");
+    }
+  }
 }
