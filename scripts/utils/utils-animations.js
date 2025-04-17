@@ -1,5 +1,5 @@
 import {createObserver} from './utils.js';
-import {load, state, getPath, getNextPath, getPage, base} from './utils-routing.js';
+import {load, state, getPath, getNextPath, getBasePath, getPage, base, routes} from './utils-routing.js';
 
 
 export const animations = {

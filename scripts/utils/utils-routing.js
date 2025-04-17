@@ -72,7 +72,7 @@ export function getPath(hash) {
   return routes[hash];
 }
 
-function getBasePath(path) {
+export function getBasePath(path) {
   return path.includes("-") ? path.split("-")[0] : path; 
 }
 
