@@ -1,4 +1,4 @@
-import { animations, animate, addLazyTargetTo} from "./utils-animations.js";
+import { animations, animate, addLazyTargetTo,  } from "./utils-animations.js";
 
 export const isLocal =
   location.hostname === "127.0.0.1" || location.hostname === "localhost";
@@ -106,11 +106,10 @@ export async function load(path, destination = app, lazyLoad = false) {
   const isMain = path.includes("/main");
 
   async function updateSideInfo(path) {
-    if (isNav) return;
+    if (isNav || isMain) return;
 
     const info = document.querySelector(".info");  
     let sidebarPath = getBasePath(path) + "-info";
-  
     console.log("Updating sidebar with path: " + sidebarPath);
 
     if (routes[sidebarPath]) {
@@ -119,12 +118,9 @@ export async function load(path, destination = app, lazyLoad = false) {
         return;
       }
       info.innerHTML = "";
-      let newInfo = await getPage(sidebarPath);
-      await append(sidebarPath, info);
-      //console.log("Sidebar updated with: " + newInfo);
 
-      
-      //console.log("Hydrated content:", sidebar.querySelectorAll("img"));
+      let newInfo = await getPage(sidebarPath);
+      info.innerHTML = newInfo;
       return newInfo;
     }
     else {
@@ -133,8 +129,6 @@ export async function load(path, destination = app, lazyLoad = false) {
       updateSideInfo(sidebarPath);
     return;
     }
-
-    
   }
 
   async function updateRole(path) {
@@ -147,11 +141,11 @@ export async function load(path, destination = app, lazyLoad = false) {
       misc: `<span class = "label">DESIGNER</span><br>
       <span class = "label">2016 - NOW</span><br></br>`, 
     };
-
+  
     for (let place in roles) {
       if (path.includes(place)) {
         let overlay = document.querySelector(".overlay");
-
+  
         overlay.classList.remove("slide-down");
         void overlay.offsetWidth; 
         
@@ -159,10 +153,6 @@ export async function load(path, destination = app, lazyLoad = false) {
         overlay.classList.add("slide-down");
       }
     }
-  }
-
-  if (isSidebar) {
-    animations["img[data-src]"]();
   }
 
   if (isInitialPage) {
@@ -179,7 +169,6 @@ export async function load(path, destination = app, lazyLoad = false) {
     page.classList.add("slide-in"); 
 
     updateSideInfo(path);
-    console.log("Updated side info");
     updateRole(path);
   
   
@@ -194,13 +183,11 @@ export async function load(path, destination = app, lazyLoad = false) {
     addLazyTargetTo(await append(path, destination, true));
     //console.log("Appended " + path + " to " + (destination.id || destination.classList) + " with lazyLoad");
   }
-  
+
   for (let selector in animations) {
-    animate(selector, destination, animations[selector]);
+    animate(selector, animations[selector]);
   }
   return;
-
-  
 }
 
 export async function append(path, destination) {

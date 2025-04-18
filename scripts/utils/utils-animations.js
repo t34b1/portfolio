@@ -10,14 +10,8 @@ export const animations = {
 
 }
 
-export function animate(element, target, callback) {
-  console.log("Target: " + target);
-  console.log("Element: " + element);
-  if (target.style.display == "none") {
-    console.log("Target hidden");
-    return;
-  }
-    const elements = target.querySelectorAll(element);
+export function animate(target, callback) {
+    const elements = document.querySelectorAll(target);
     //console.log(`Found ${elements.length} for "${target}"`);
     elements.forEach(callback);
 }
