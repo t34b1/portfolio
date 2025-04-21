@@ -5,9 +5,9 @@
 }
 
 html {
-  background-color: #1f1313;
-  color: #dad9d9;
   font-family: "ibm-plex-sans", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 body {
@@ -15,87 +15,79 @@ body {
   margin: 0;
   padding: 0;
   z-index: 0;
-  background: url() center;
 }
 
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*------------------------------------------ Animation Keyframes ------------------------------------------*/
+
 @keyframes moveIn {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(0);    }
 }
 
 @keyframes moveOut {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-150%);
-  }
+  0%   { transform: translateX(0);     }
+  100% { transform: translateX(-150%); }
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes slideIn {
-  0% {
-    transform: translateX(300px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  0%   { transform: translateX(300px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes slideDown {
-  0% {
-    transform: translateY(-30px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  0%   { transform: translateY(-30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
-.fade-in {
-  animation: fadeIn 0.3s ease forwards;
+@keyframes float {
+  0%   { transform: translate(0px, 0px); }
+  50%  { transform: translate(2px, -4px); }
+  100% { transform: translate(0px, 0px); }
 }
 
-.move-in {
-  animation: moveIn 0.4s ease-out forwards;
+@keyframes floatReverse {
+  0%   { transform: translate(0px, 0px); }
+  50%  { transform: translate(2px, 4px); }
+  100% { transform: translate(0px, 0px); }
 }
 
-.move-out {
-  animation: moveOut 0.4s ease-out forwards;
+
+
+/*------------------------------------------ Animation Classes ------------------------------------------*/
+
+.fade-in  { animation: fadeIn 0.3s ease forwards; }
+.move-in  { animation: moveIn 0.4s ease-out forwards; }
+.move-out { animation: moveOut 0.4s ease-out forwards; }
+.slide-in { animation: slideIn 0.5s ease forwards; }
+.slide-down { animation: slideDown 0.5s ease forwards; }
+.floating {
+  animation: float 2.5s ease-in-out infinite;
+}
+.floating-reverse {
+  animation: floatReverse 2.5s ease-in-out infinite;
+  animation-delay: 500ms;
 }
 
-.slide-in {
-  animation: slideIn 0.5s ease forwards;
-}
-
-.slide-down {
-  animation: slideDown 0.5s ease forwards;
-}
+/*------------------------------------------ Theme/Color Variables ------------------------------------------*/
 
 .dark {
   --text-color: #dad9d9;
   --bg-color: #150e0e;
-}
-.transparent {
-  --bg-color: #fefefe00;
-  --label-color: #fefefe00;
 }
 .wnrs.red {
   --text-color: #dad9d9;
@@ -123,6 +115,8 @@ body {
   background-color: var(--bg-color);
 }
 
+/*------------------------------------------ Blur Effects ------------------------------------------*/
+
 .blur-wrapper {
   position: relative;
   width: 100%;
@@ -139,12 +133,8 @@ body {
   z-index: 0;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 /*------------------------------------------Default (Mobile) ------------------------------------------*/
+
 @media (min-width: 320px) {
   :root {
     --border: 0px;
@@ -153,6 +143,8 @@ a {
     --fit: cover;
     --gap: 28px;
     --small-gap: 16px;
+    --text-color: #dad9d9;
+    --bg-color: #1f1313;
   }
 
   .contain {
@@ -170,16 +162,22 @@ a {
     grid-template-columns: 1fr;
   }
 
-  h1 {
-    font-size: 24px;
+  h1, h2 {
     font-weight: 300;
     margin: 0;
   }
 
+  bodycopy, span.small, span.label, span.small.label {
+    font-weight: 400;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
   h2 {
     font-size: 22px;
-    font-weight: 300;
-    margin: 0;
   }
 
   h3 {
@@ -190,38 +188,25 @@ a {
 
   bodycopy {
     font-size: 16px;
-    font-weight: 400;
-    line-height: 1.2em;
+    line-height: 1.3em;
     display: block;
   }
 
   span.small {
     font-size: 14px;
-    font-weight: 400;
     display: inline-block;
-    margin: 0;
   }
 
-  span.label {
+  span.label, 
+  span.small.label {
     font-family: "ibm-plex-mono", sans-serif;
     font-size: 11px;
-    font-weight: 400;
-    margin: 0;
-  }
-
-  span.mono {
-    font-family: "ibm-plex-mono", sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 0.8em;
-    margin: 0;
   }
 
   img {
     object-fit: var(--fit);
     width: 100%;
     max-width: 150%;
-    overflow: hidden;
   }
 
   #nav {
@@ -231,14 +216,14 @@ a {
     margin: 0px;
     padding: 10px var(--small-gap) 20px var(--small-gap);
     z-index: 1000;
-    width: 100%;
+    width: 100vw;
     max-height: max-content;
   }
 
   #nav img {
-    height: 20px;
+    height: 22px;
     width: auto;
-    margin-left: 28px;
+    margin-left: var(--gap);
   }
 
   .overlay {
@@ -255,13 +240,12 @@ a {
 
   #app {
     margin: 0 var(--small-gap);
-    padding-top: 50px;
+    padding-top: calc(var(--gap) * 2.5);
   }
 
   .container {
     position: relative;
     width: 100%;
-    max-width: 100vw;
     height: auto;
     min-height: 50vh;
     margin: 0px 0px var(--gap) 0px;
@@ -282,7 +266,7 @@ a {
   }
 
   #mobile-project-display .project {
-    margin: 28px 0px;
+    margin: var(--gap) 0px;
   }
 
   #mobile-project-display .project .thumbnail {
@@ -301,6 +285,12 @@ a {
     padding: 0;
   }
 
+  hr {
+    border: none;
+    border-bottom: 1px solid var(--text-color);
+    margin: var(--gap) 0;
+  }
+
   .padded {
     padding: var(--pad);
   }
@@ -309,17 +299,12 @@ a {
     position: absolute;
     bottom: 16%;
     right: 5%;
-    width: 35%;
+    width: 40%;
   }
 
   .hero {
     width: 100%;
     height: 40vh;
-  }
-
-  .hero iframe {
-    width: 100%;
-    height: 100%;
   }
 
   .appended-page {
@@ -393,7 +378,7 @@ a {
   .phone-wrapper {
     display: grid;
     place-items: center;
-    max-width: 50vw;
+    max-width: 250px;
     height: auto;
     padding: 8px;
     position: relative;
@@ -420,14 +405,50 @@ a {
   }
 
   img.full {
+    object-fit: var(--fit);
     object-position: center center;
-    object-fit: contain;
-    max-height: 100%;
-    display: block;
+  }
+
+  .scroll-wrapper {
+    overflow-x: hidden;
+    max-width: 93vw;
+    border-radius: var(--radius);
+    min-height: 50vh;
+    margin: 0px 0px var(--gap) 0px;
+    padding: var(--pad) 0 var(--pad) var(--pad);
+    background-color: var(--bg-color);
+  }
+  
+  .scroll-horizontal {
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap);
+    padding-right: var(--pad);
+    scrollbar-width: none;  
+    text-align: center;
+ 
+  }
+
+  .scroll-horizontal::-webkit-scrollbar {
+    display: none;                   
+  }
+  
+  .scroll-horizontal .image {
+    width: clamp(180px, 230px, 250px);
+  }
+
+  .label.button {
+    display: inline-block;
+    border: 1px solid var(--text-color);
+    border-radius: 50px;
+    padding: 6px 12px;
+    margin: 8px;
+    width: max-content;
   }
 }
 
-/*------------------------------------------ Tablet and up (min-width: 600px) ------------------------------------------*/
+/*------------------------------------------ Tablet and up (min-width: 768px) ------------------------------------------*/
 @media (min-width: 768px) {
   :root {
     --border: 0px;
@@ -479,7 +500,7 @@ a {
   }
 
   bodycopy {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   span.small {
@@ -490,6 +511,11 @@ a {
     font-size: 12px;
     line-height: 1.4em;
   }
+
+  span.small.label {
+    font-size: 10px;
+  }
+
 
   #nav {
     position: fixed;
@@ -538,19 +564,20 @@ a {
     right: 0;
     top: 0;
     margin: 0;
-    overflow: scroll;
-  }
-
-  .page {
-    margin: 0;
-    padding: 0;
+    overflow-y: scroll;
   }
 
   #app {
     padding-left: var(--small-gap);
     padding-top: calc(var(--gap) * 2 + var(--small-gap));
     margin: 0;
-    overflow: scroll;
+    overflow-y: scroll;
+    scrollbar-width: none;  
+
+  }
+
+  #app::-webkit-scrollbar {
+    display: none;                   
   }
 
   .container {
@@ -594,6 +621,16 @@ a {
   .info {
     margin-bottom: calc(var(--gap) * 2);
   }
+
+  .scroll-wrapper {
+    height: 75vh;
+  }
+
+  .scroll-horizontal .image {
+    width: clamp(200px, 240px, 260px);
+  }
+
+
 }
 
 /*------------------------------------------ Desktop and up (min-width: 1024px) ------------------------------------------*/
@@ -619,7 +656,7 @@ a {
   }
 
   span.label {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   #nav {
@@ -708,4 +745,5 @@ a {
   .three .comments {
     max-width: 240px;
   }
+
 }

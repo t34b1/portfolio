@@ -64,18 +64,18 @@ export async function hydrate(element) {
 
       if (element.matches("IMG")) {
         element.src = base + element.dataset.src;
-        console.log("Element hydrated: " + element.src);
+        //console.log("Element hydrated: " + element.src);
         element.removeAttribute("data-src");
       }
 
       if (element.matches("DIV")) {
-        console.log("path: " + element.dataset.href);
+       // console.log("path: " + element.dataset.href);
         const page = document.createElement("div");
         page.innerHTML = await getPage(element.dataset.href);
         page.classList.add("hydrated-page");
         element.innerHTML = "";
         element.append(page);
-        console.log("Container: " + element.id);
+        //console.log("Container: " + element.id);
       }
 
       

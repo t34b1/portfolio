@@ -14,7 +14,6 @@ export const routes = {
   "/main-info": "/projects/main-info.html",
   "/footer": "/footer.html",
   "/sidebar": "/sidebar.html",
-
   "/hero": "/projects/hero.html",
 
   "/projects/m6-0": "/projects/m6/mutesix-0.html",
@@ -23,7 +22,6 @@ export const routes = {
   "/projects/m6-3": "/projects/m6/mutesix-3.html",
   "/projects/m6-info": "/projects/m6/mutesix-info.html",
 
-
   "/projects/wnrs-0": "/projects/wnrs/wnrs-0.html",
   "/projects/wnrs-1": "/projects/wnrs/wnrs-1.html",
   "/projects/wnrs-2": "/projects/wnrs/wnrs-2.html",
@@ -31,17 +29,14 @@ export const routes = {
   "/projects/wnrs-4": "/projects/wnrs/wnrs-4.html",
   "/projects/wnrs-5": "/projects/wnrs/wnrs-5.html",
   "/projects/wnrs-info": "/projects/wnrs/wnrs-info.html",
-
-
   "/projects/wnrs-brand": "/projects/wnrs/brand-grid.html",
+
   "/projects/sl-0": "/projects/self-love-edition/sl-0.html",
-  "/projects/sl-1": "/projects/self-love-edition/sl-1.html",
+
+  "/projects/x-0": "/projects/x-edition/x-0.html",
 
   "/projects/misc-0": "/projects/misc/misc-0.html",
   "/projects/misc-1": "/projects/misc/misc-1.html",
-
-
-
 
 }
 
@@ -106,11 +101,11 @@ export async function load(path, destination = app, lazyLoad = false) {
   const isMain = path.includes("/main");
 
   async function updateSideInfo(path) {
-    if (isNav || isMain) return;
+    if (isNav) return;
 
     const info = document.querySelector(".info");  
     let sidebarPath = getBasePath(path) + "-info";
-    console.log("Updating sidebar with path: " + sidebarPath);
+    //console.log("Updating sidebar with path: " + sidebarPath);
 
     if (routes[sidebarPath]) {
       if (!info) {
@@ -134,12 +129,12 @@ export async function load(path, destination = app, lazyLoad = false) {
   async function updateRole(path) {
     let roles = {
       main: "",
-      wnrs: `<span class = "label">SENIOR DIGITAL DESIGNER</span><br>
-        <span class = "label">2022 - 2025</span><br></br>`,
-      m6: `<span class = "label">SENIOR DIGITAL DESIGN MANAGER</span><br>
-      <span class = "label">2020 - 2022</span><br></br>`,
-      misc: `<span class = "label">DESIGNER</span><br>
-      <span class = "label">2016 - NOW</span><br></br>`, 
+      wnrs: `<span class = "small label">SENIOR DIGITAL DESIGNER</span><br>
+        <span class = "small label">2022 - 2025</span><br></br>`,
+      m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
+      <span class = "small label">2020 - 2022</span><br></br>`,
+      misc: `<span class = "small label">DESIGNER</span><br>
+      <span class = "small label">2016 - NOW</span><br></br>`, 
     };
   
     for (let place in roles) {
