@@ -1,4 +1,4 @@
-import { animations, animate, addLazyTargetTo,  } from "./utils-animations.js";
+import { animations, animate, addLazyTargetTo, delay  } from "./utils-animations.js";
 
 export const isLocal =
   location.hostname === "127.0.0.1" || location.hostname === "localhost";
@@ -19,7 +19,6 @@ export const routes = {
   "/projects/m6-0": "/projects/m6/mutesix-0.html",
   "/projects/m6-1": "/projects/m6/mutesix-1.html",
   "/projects/m6-2": "/projects/m6/mutesix-2.html",
-  "/projects/m6-3": "/projects/m6/mutesix-3.html",
   "/projects/m6-info": "/projects/m6/mutesix-info.html",
 
   "/projects/wnrs-0": "/projects/wnrs/wnrs-0.html",
@@ -34,6 +33,12 @@ export const routes = {
   "/projects/sl-0": "/projects/self-love-edition/sl-0.html",
 
   "/projects/x-0": "/projects/x-edition/x-0.html",
+  "/projects/x-1": "/projects/x-edition/x-1.html",
+  "/projects/x-2": "/projects/x-edition/x-2.html",
+  "/projects/x-3": "/projects/x-edition/x-3.html",
+
+  "/projects/pop-up": "/projects/x-edition/pop-up.html",
+  "/projects/exploration": "/projects/x-edition/self-exploration-pack.html",
 
   "/projects/misc-0": "/projects/misc/misc-0.html",
   "/projects/misc-1": "/projects/misc/misc-1.html",
@@ -46,7 +51,7 @@ function updateState(path) {
   state.nextPath = getNextPath(path);
 }
 
-export async function getPage(path) {
+export async function loadPage(path) {
   if (!routes[path]) {
     console.error(`No route found for path: ${path}`);
     return;
@@ -109,12 +114,12 @@ export async function load(path, destination = app, lazyLoad = false) {
 
     if (routes[sidebarPath]) {
       if (!info) {
-        console.log("infobar not found");
+        //console.log("infobar not found");
         return;
       }
       info.innerHTML = "";
 
-      let newInfo = await getPage(sidebarPath);
+      let newInfo = await loadPage(sidebarPath);
       info.innerHTML = newInfo;
       return newInfo;
     }
@@ -166,7 +171,6 @@ export async function load(path, destination = app, lazyLoad = false) {
     updateSideInfo(path);
     updateRole(path);
   
-  
     if (isProjectsPage && state.nextPath) {
       //console.log("Loading next");
       load(state.nextPath, destination, true);
@@ -182,11 +186,12 @@ export async function load(path, destination = app, lazyLoad = false) {
   for (let selector in animations) {
     animate(selector, animations[selector]);
   }
+
   return;
 }
 
 export async function append(path, destination) {
-  const html = await getPage(path);
+  const html = await loadPage(path);
   const page = document.createElement("div");
   page.classList.add("page");
   page.innerHTML = html;
@@ -214,4 +219,6 @@ export async function handleHashChange(event) {
     top: 0,
     behavior: "smooth" 
   });
+
+  return;
 }

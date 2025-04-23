@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+
 }
 
 html {
@@ -66,6 +67,32 @@ a {
   100% { transform: translate(0px, 0px); }
 }
 
+@keyframes floatRotate {
+  0%   { transform: translate(-18%, 0px) rotateX(25deg) rotateY(45deg);}
+  50%  { transform: translate(-18%, -10px) rotateX(25deg) rotateY(45deg);}
+  100% { transform: translate(-18%, 0px) rotateX(25deg) rotateY(45deg);}
+}
+
+@keyframes reverseFloatRotate {
+  0%   { transform: translate(-18%, 0px) rotateX(25deg) rotateY(45deg);}
+  50%  { transform: translate(-18%, 10px) rotateX(25deg) rotateY(45deg);}
+  100% { transform: translate(-18%, 0px) rotateX(25deg) rotateY(45deg);}
+}
+
+@keyframes rotateBack {
+  0%   { transform: translate(0px, 0px) rotateX(25deg) rotateY(45deg); }
+  100% { 
+    transform: translate(-20%, -20%) rotateX(0deg) rotateY(0deg); 
+    z-index: 1000;
+    width: 500px;
+  }
+}
+
+@keyframes rotate {
+  0%   { transform: translate(0px, 0px) rotateX(0deg) rotateY(0deg);}
+  100% { transform: translate(0px, 0px)rotateX(25deg) rotateY(45deg);}
+}
+
 
 
 /*------------------------------------------ Animation Classes ------------------------------------------*/
@@ -81,6 +108,12 @@ a {
 .floating-reverse {
   animation: floatReverse 2.5s ease-in-out infinite;
   animation-delay: 500ms;
+}
+.float-rotate {
+  animation: floatRotate 2s ease-in-out infinite; 
+}
+.reversefloat-rotate {
+  animation: reverseFloatRotate 2s ease-in-out infinite; 
 }
 
 /*------------------------------------------ Theme/Color Variables ------------------------------------------*/
@@ -102,6 +135,9 @@ a {
 }
 .m6.orange {
   --bg-color: #e33614;
+}
+.m6.purple{
+  --bg-color: #7DA1FD;
 }
 .m6.light {
   --bg-color: #f5f7fa;
@@ -148,6 +184,7 @@ a {
   }
 
   .contain {
+    max-height: 100%;
     --fit: contain;
   }
 
@@ -162,18 +199,18 @@ a {
     grid-template-columns: 1fr;
   }
 
-  h1, h2 {
-    font-weight: 300;
-    margin: 0;
-  }
-
-  bodycopy, span.small, span.label, span.small.label {
+  h2 {
     font-weight: 400;
     margin: 0;
   }
 
+  h1, bodycopy, span.small, span.label, span.small.label {
+    font-weight: 300;
+    margin: 0;
+  }
+
   h1 {
-    font-size: 24px;
+    font-size: 1em;
   }
 
   h2 {
@@ -183,7 +220,7 @@ a {
   h3 {
     font-size: 18px;
     font-weight: 500;
-    margin: 0;
+    margin-bottom: 8px;
   }
 
   bodycopy {
@@ -200,7 +237,7 @@ a {
   span.label, 
   span.small.label {
     font-family: "ibm-plex-mono", sans-serif;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   img {
@@ -440,12 +477,64 @@ a {
 
   .label.button {
     display: inline-block;
-    border: 1px solid var(--text-color);
     border-radius: 50px;
-    padding: 6px 12px;
-    margin: 8px;
+    border: 1px solid var(--text-color);
+    padding: 8px 12px;
+    opacity: .75;
+    margin: 2px;
     width: max-content;
   }
+
+  .glass {
+    background-color: #dad9d91d;
+    backdrop-filter: blur(20px);
+    box-shadow: 2px 2px 16px 6px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius);
+    margin: 40px;
+    color: var(--text-color);
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 6px 0;
+  }
+
+  .rotateContainer {
+    position: relative;
+    display: inline-block;
+    width: clamp(20%, 23%, 25%);
+    height: 75vh;
+    padding: 0;
+    margin: -18px;
+  }
+
+  .rotate {
+    width: 100%;
+    position: absolute;
+    top: 30%;
+    box-shadow:
+    .5px -.5px 0.0 0.0px  #949494,
+    .75px -.75px 0.0 0.0px #949494,
+    1px -1px 0.0 0.0px #929292,
+    1.25px -1.25px 0.0 0.0px #8c8c8c,
+    1.5px -1.5px 0.0 0.0px #8c8c8c,
+    1.75px -1.75px 0.0 0.0px #6b6b6b,
+    2px -2px 0.0 0.0px #6b6b6b,
+    2.25px -2.25px 0.0 0.0px #6b6b6b,
+    2.5px -2.5px 0.0 0.0px #6b6b6b,
+    2.75px -2.75px 0.0 0.0px #585858,
+    3px -3px 0.0 0.0px #585858,
+    3.25px -3.25px 0.0 0.0px #4a4a4a,
+    3.5px -3.5px 0.0 0.0px #3e3e3e,
+      10.5px -7.5px 25.0px 0.0px rgba(96,96,96,0.3); 
+          
+  }
+
+
 }
 
 /*------------------------------------------ Tablet and up (min-width: 768px) ------------------------------------------*/
@@ -513,7 +602,7 @@ a {
   }
 
   span.small.label {
-    font-size: 10px;
+    font-size: 12px;
   }
 
 
@@ -598,8 +687,8 @@ a {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 34px;
-    margin-bottom: 34px;
+    gap: var(--gap);
+    margin-bottom: var(--gap);
   }
 
   #sidebar-projects .project {
@@ -612,6 +701,7 @@ a {
     object-fit: cover;
     aspect-ratio: 3/2;
     border-radius: var(--radius);
+
   }
 
   #sidebar-projects .project:hover {
@@ -652,7 +742,7 @@ a {
   }
 
   span.small {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   span.label {

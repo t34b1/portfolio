@@ -1,0 +1,68 @@
+<style>
+      .window {
+      position: absolute;
+      width: 60%;
+      min-height: 80%;
+      max-height: 90vh;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      background: url("../../images/wnrs/wnrs-site-dark.jpg") top center / contain no-repeat;
+      background-color: #101010;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 8px;
+      overflow: hidden;
+      padding: 2%;
+      } 
+  
+      .card {
+        width: 100%;
+        height: auto;
+        margin-right: 15%;
+      }
+      #card-container {
+        width: 80%;
+        height: auto;
+        padding: 0% 8%;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      #card-container img {
+        width: 100%;
+      }
+  
+      .desktop {
+        position: relative;
+        background: url("../../images/x-edition/desktop.jpg") top center / cover no-repeat;
+        height: 100%;
+        width: 100%;
+        }
+  
+        #previous, #next {
+          width: 3%;
+        }
+  
+        .hidden {
+        display: none;
+      }
+        
+    </style>
+
+
+<div class="wnrs dark container no-pad" id = "exploration">
+   <div class="desktop">
+      <div class = "window">
+        <img src = "../../images/wnrs/back-arrow-red.png"  id = "previous">
+        <div id = "card-container">
+          <img src = "../../images/wnrs/self-exploration-pack-title.png" id = "title">
+        </div>
+        <img src = "../../images/wnrs/forward-arrow-red.png"  id = "next">
+      </div>
+     </div>
+  
+</div>
+
+
