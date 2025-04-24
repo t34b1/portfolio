@@ -1,4 +1,4 @@
-import { animations, animate, addLazyTargetTo, delay  } from "./utils-animations.js";
+import { animations, animate, addLazyTargetTo, delay, updateSideInfo, updateRole} from "./utils-animations.js";
 
 export const isLocal =
   location.hostname === "127.0.0.1" || location.hostname === "localhost";
@@ -15,6 +15,8 @@ export const routes = {
   "/footer": "/footer.html",
   "/sidebar": "/sidebar.html",
   "/hero": "/projects/hero.html",
+  "/project-display": "/projects/project-display.html",
+
 
   "/projects/m6-0": "/projects/m6/mutesix-0.html",
   "/projects/m6-1": "/projects/m6/mutesix-1.html",
@@ -31,11 +33,15 @@ export const routes = {
   "/projects/wnrs-brand": "/projects/wnrs/brand-grid.html",
 
   "/projects/sl-0": "/projects/self-love-edition/sl-0.html",
+  "/projects/sl-info": "/projects/self-love-edition/sl-info.html",
+
 
   "/projects/x-0": "/projects/x-edition/x-0.html",
   "/projects/x-1": "/projects/x-edition/x-1.html",
   "/projects/x-2": "/projects/x-edition/x-2.html",
   "/projects/x-3": "/projects/x-edition/x-3.html",
+  "/projects/x-info": "/projects/x-edition/x-info.html",
+
 
   "/projects/pop-up": "/projects/x-edition/pop-up.html",
   "/projects/exploration": "/projects/x-edition/self-exploration-pack.html",
@@ -44,7 +50,6 @@ export const routes = {
   "/projects/misc-1": "/projects/misc/misc-1.html",
 
 }
-
 
 function updateState(path) {
   state.currentPath = path;
@@ -94,7 +99,6 @@ export function getNextPath(path) {
   return nextPath;
 }
 
-
 export async function load(path, destination = app, lazyLoad = false) {
   //console.log("Loading... Path passed into load: " + path);
   if (path == null) return;
@@ -104,56 +108,6 @@ export async function load(path, destination = app, lazyLoad = false) {
   const isNav = path.includes("/nav");
   const isSidebar = path.includes("/sidebar");
   const isMain = path.includes("/main");
-
-  async function updateSideInfo(path) {
-    if (isNav) return;
-
-    const info = document.querySelector(".info");  
-    let sidebarPath = getBasePath(path) + "-info";
-    //console.log("Updating sidebar with path: " + sidebarPath);
-
-    if (routes[sidebarPath]) {
-      if (!info) {
-        //console.log("infobar not found");
-        return;
-      }
-      info.innerHTML = "";
-
-      let newInfo = await loadPage(sidebarPath);
-      info.innerHTML = newInfo;
-      return newInfo;
-    }
-    else {
-      //console.log("No sidebar path found");
-      sidebarPath = "/main-info";
-      updateSideInfo(sidebarPath);
-    return;
-    }
-  }
-
-  async function updateRole(path) {
-    let roles = {
-      main: "",
-      wnrs: `<span class = "small label">SENIOR DIGITAL DESIGNER</span><br>
-        <span class = "small label">2022 - 2025</span><br></br>`,
-      m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
-      <span class = "small label">2020 - 2022</span><br></br>`,
-      misc: `<span class = "small label">DESIGNER</span><br>
-      <span class = "small label">2016 - NOW</span><br></br>`, 
-    };
-  
-    for (let place in roles) {
-      if (path.includes(place)) {
-        let overlay = document.querySelector(".overlay");
-  
-        overlay.classList.remove("slide-down");
-        void overlay.offsetWidth; 
-        
-        overlay.innerHTML = roles[place];
-        overlay.classList.add("slide-down");
-      }
-    }
-  }
 
   if (isInitialPage) {
     destination.innerHTML = "";
@@ -165,7 +119,7 @@ export async function load(path, destination = app, lazyLoad = false) {
     if (isNav || isSidebar ) return;
 
     page.classList.remove("slide-in");
-    void page.offsetWidth; // force reflow
+    void page.offsetWidth; 
     page.classList.add("slide-in"); 
 
     updateSideInfo(path);

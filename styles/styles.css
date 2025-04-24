@@ -57,42 +57,49 @@ a {
 
 @keyframes float {
   0%   { transform: translate(0px, 0px); }
-  50%  { transform: translate(2px, -4px); }
+  50%  { transform: translate(0px, -10px); }
   100% { transform: translate(0px, 0px); }
 }
 
 @keyframes floatReverse {
   0%   { transform: translate(0px, 0px); }
-  50%  { transform: translate(2px, 4px); }
+  50%  { transform: translate(0px, 10px); }
   100% { transform: translate(0px, 0px); }
 }
 
-@keyframes floatRotate {
-  0%   { transform: translate(-18%, 0px) rotateX(25deg) rotateY(45deg);}
-  50%  { transform: translate(-18%, -10px) rotateX(25deg) rotateY(45deg);}
-  100% { transform: translate(-18%, 0px) rotateX(25deg) rotateY(45deg);}
+@keyframes rotate {
+  0%   { transform: rotateX(0deg) rotateY(0deg);}
+  100% { transform: rotateX(25deg) rotateY(45deg);}
 }
 
-@keyframes reverseFloatRotate {
-  0%   { transform: translate(-18%, 0px) rotateX(25deg) rotateY(45deg);}
-  50%  { transform: translate(-18%, 10px) rotateX(25deg) rotateY(45deg);}
-  100% { transform: translate(-18%, 0px) rotateX(25deg) rotateY(45deg);}
-}
-
-@keyframes rotateBack {
-  0%   { transform: translate(0px, 0px) rotateX(25deg) rotateY(45deg); }
+@keyframes rotateBackFocus {
+  0%   { transform: translate(-5%, 0) rotateX(25deg) rotateY(45deg); }
   100% { 
-    transform: translate(-20%, -20%) rotateX(0deg) rotateY(0deg); 
-    z-index: 1000;
-    width: 500px;
+    transform: translate(-5%, 0) rotateX(0deg) rotateY(0deg) scale(1.5); 
+    z-index: 100;
   }
 }
 
-@keyframes rotate {
-  0%   { transform: translate(0px, 0px) rotateX(0deg) rotateY(0deg);}
-  100% { transform: translate(0px, 0px)rotateX(25deg) rotateY(45deg);}
+@keyframes rotateBackBlur {
+  0% { 
+    transform: translate(-5%, 0) rotateX(0deg) rotateY(0deg) scale(1.5); 
+    z-index: 0;
+  }
+  100%   { transform: translate(-5%, 0) rotateX(25deg) rotateY(45deg); }
+
 }
 
+@keyframes floatRotate {
+  0%   { transform: translate(-5%, 0) rotateX(25deg) rotateY(45deg);}
+  50%  { transform: translate(-5%, 3%) rotateX(25deg) rotateY(45deg);}
+  100% { transform: translate(-5%, 0) rotateX(25deg) rotateY(45deg);}
+}
+
+@keyframes reverseFloatRotate {
+  0%   { transform: translate(-5%, 0) rotateX(25deg) rotateY(45deg);}
+  50%  { transform: translate(-5%, -3%) rotateX(25deg) rotateY(45deg);}
+  100% { transform: translate(-5%, 0) rotateX(25deg) rotateY(45deg);}
+}
 
 
 /*------------------------------------------ Animation Classes ------------------------------------------*/
@@ -102,33 +109,32 @@ a {
 .move-out { animation: moveOut 0.4s ease-out forwards; }
 .slide-in { animation: slideIn 0.5s ease forwards; }
 .slide-down { animation: slideDown 0.5s ease forwards; }
+
 .floating {
-  animation: float 2.5s ease-in-out infinite;
+  animation: float 2s ease-in-out infinite;
 }
-.floating-reverse {
-  animation: floatReverse 2.5s ease-in-out infinite;
-  animation-delay: 500ms;
+
+.floating.reverse {
+  animation: floatReverse 2s ease-in-out infinite;
 }
-.float-rotate {
-  animation: floatRotate 2s ease-in-out infinite; 
-}
-.reversefloat-rotate {
-  animation: reverseFloatRotate 2s ease-in-out infinite; 
-}
+
+
 
 /*------------------------------------------ Theme/Color Variables ------------------------------------------*/
 
 .dark {
-  --text-color: #dad9d9;
   --bg-color: #150e0e;
+}
+.clear {
+  --bg-color: #ffffff00;
+}
+.light {
+  --text-color: #1f1313;
+  --bg-color: #dad9d9;
 }
 .wnrs.red {
   --text-color: #dad9d9;
   --bg-color: #c10016;
-}
-.wnrs.light {
-  --text-color: #1f1313;
-  --bg-color: #dad9d9;
 }
 .m6.blue {
   --bg-color: #0a2155;
@@ -150,6 +156,8 @@ a {
   color: var(--text-color);
   background-color: var(--bg-color);
 }
+
+
 
 /*------------------------------------------ Blur Effects ------------------------------------------*/
 
@@ -280,6 +288,31 @@ a {
     padding-top: calc(var(--gap) * 2.5);
   }
 
+  #display {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    margin: var(--gap) 0px;
+  }
+
+  #display .project {
+    filter: brightness(0.4) grayscale(30%);
+    transition: filter 0.3s ease;
+  }
+
+  #display .project .thumbnail {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 3/2;
+    border-radius: var(--radius);
+  }
+
+  #display .project:hover {
+    filter: brightness(0.9) grayscale(0%);
+  }
+
+
   .container {
     position: relative;
     width: 100%;
@@ -295,24 +328,7 @@ a {
   .container > div {
     padding: var(--pad);
   }
-
-  #mobile-project-display {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  #mobile-project-display .project {
-    margin: var(--gap) 0px;
-  }
-
-  #mobile-project-display .project .thumbnail {
-    width: 100%;
-    object-fit: cover;
-    aspect-ratio: 5/4;
-    border-radius: var(--radius);
-  }
-
+  
   iframe {
     display: block;
     width: 100%;
@@ -368,6 +384,7 @@ a {
 
   .centered > img {
     width: 100%;
+    height: 100%;
   }
 
   .mobile-stack,
@@ -444,6 +461,8 @@ a {
   img.full {
     object-fit: var(--fit);
     object-position: center center;
+    width: 100%;
+    height: 100%;
   }
 
   .scroll-wrapper {
@@ -475,25 +494,26 @@ a {
     width: clamp(180px, 230px, 250px);
   }
 
+  .labels {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .label.button {
-    display: inline-block;
+    background: #2f242a;
     border-radius: 50px;
-    border: 1px solid var(--text-color);
-    padding: 8px 12px;
+    padding: 10px;
     opacity: .75;
-    margin: 2px;
+    margin: 0px;
     width: max-content;
+    transition: background-color 300ms ease-in-out 0s;
   }
 
-  .glass {
-    background-color: #dad9d91d;
-    backdrop-filter: blur(20px);
-    box-shadow: 2px 2px 16px 6px rgba(0, 0, 0, 0.1);
-    border-radius: var(--radius);
-    margin: 40px;
-    color: var(--text-color);
+  .label.button:hover {
+    background:  #685560;
   }
-
+ 
   ul {
     list-style-type: none;
     padding: 0;
@@ -505,36 +525,44 @@ a {
 
   .rotateContainer {
     position: relative;
-    display: inline-block;
-    width: clamp(20%, 23%, 25%);
-    height: 75vh;
-    padding: 0;
-    margin: -18px;
+    width: clamp(20%, 25%, 30%);
+    height: 100%;
   }
 
-  .rotate {
+  .rotated {
+    animation: none;
+  }
+  
+  .floating.rotated {
+    animation: none; 
+  }
+  
+  .reverse.floating.rotated {
+    animation: none; 
+  }
+
+  .beveled {
+    box-shadow: none;
+  }
+
+  .desktop {
+    position: relative;
+    background: url("/images/x-edition/desktop.jpg") top center / cover no-repeat;
+    height: 50vh;
     width: 100%;
-    position: absolute;
-    top: 30%;
-    box-shadow:
-    .5px -.5px 0.0 0.0px  #949494,
-    .75px -.75px 0.0 0.0px #949494,
-    1px -1px 0.0 0.0px #929292,
-    1.25px -1.25px 0.0 0.0px #8c8c8c,
-    1.5px -1.5px 0.0 0.0px #8c8c8c,
-    1.75px -1.75px 0.0 0.0px #6b6b6b,
-    2px -2px 0.0 0.0px #6b6b6b,
-    2.25px -2.25px 0.0 0.0px #6b6b6b,
-    2.5px -2.5px 0.0 0.0px #6b6b6b,
-    2.75px -2.75px 0.0 0.0px #585858,
-    3px -3px 0.0 0.0px #585858,
-    3.25px -3.25px 0.0 0.0px #4a4a4a,
-    3.5px -3.5px 0.0 0.0px #3e3e3e,
-      10.5px -7.5px 25.0px 0.0px rgba(96,96,96,0.3); 
-          
   }
 
+  .pop-up {
+    position: absolute;
+    width: 54%;
+    left: 12%;
+    top: 40%;
+  }
 
+  .underneath {
+    position: absolute;
+    z-index: -10;
+  }
 }
 
 /*------------------------------------------ Tablet and up (min-width: 768px) ------------------------------------------*/
@@ -577,27 +605,27 @@ a {
   }
 
   h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   h2 {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   h3 {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   bodycopy {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   span.small {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   span.label {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.4em;
   }
 
@@ -605,22 +633,20 @@ a {
     font-size: 12px;
   }
 
-
   #nav {
     position: fixed;
     width: 100%;
     z-index: 10;
     display: flex;
     justify-content: flex-start;
-    padding: calc(var(--gap) / 2) var(--small-gap) calc(var(--gap) * 2)
-      var(--small-gap);
+    padding: calc(var(--gap) / 2) var(--small-gap) calc(var(--gap) * 2) var(--small-gap);
     gap: calc(var(--gap) * 2);
   }
 
   #nav img {
     height: 20px;
     width: auto;
-    margin-right: 22px;
+    margin-right: var(--gap);
     margin-left: 0;
   }
 
@@ -679,35 +705,6 @@ a {
     height: 100%;
   }
 
-  #mobile-project-display {
-    display: none;
-  }
-
-  #sidebar-projects {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-    margin-bottom: var(--gap);
-  }
-
-  #sidebar-projects .project {
-    filter: brightness(0.4) grayscale(30%);
-    transition: filter 0.3s ease;
-  }
-
-  #sidebar-projects .project .thumbnail {
-    width: 100%;
-    object-fit: cover;
-    aspect-ratio: 3/2;
-    border-radius: var(--radius);
-
-  }
-
-  #sidebar-projects .project:hover {
-    filter: brightness(0.9) grayscale(0%);
-  }
-
   .info {
     margin-bottom: calc(var(--gap) * 2);
   }
@@ -720,6 +717,11 @@ a {
     width: clamp(200px, 240px, 260px);
   }
 
+  main .section-a #project-display {
+    display: none;
+  }
+
+  
 
 }
 
@@ -738,7 +740,7 @@ a {
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   span.small {
@@ -755,10 +757,9 @@ a {
   }
 
   #nav img {
-    height: 15px;
+    height: 22px;
     width: auto;
     margin-right: var(--small-gap);
-    margin-left: 0;
   }
 
   .nav-1 {
@@ -766,6 +767,8 @@ a {
   }
   .nav-2 {
     flex: 1;
+    margin-left:var(--gap);
+
   }
 
   .overlay {
@@ -777,8 +780,6 @@ a {
   }
 
   #footer {
-    display: flex;
-    align-items: center;
     padding: 0px var(--gap);
   }
 
@@ -836,4 +837,44 @@ a {
     max-width: 240px;
   }
 
+  .rotated {
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    animation: rotate 300ms ease-in-out forwards;
+  }
+  
+  .floating.rotated {
+    animation: floatRotate 2s ease-in-out infinite; 
+  }
+  
+  .reverse.floating.rotated {
+    animation: reverseFloatRotate 2s ease-in-out infinite; 
+  }
+
+  .beveled {
+    box-shadow:
+    .5px -.5px 0.0 0.0px  #949494,
+    .75px -.75px 0.0 0.0px #949494,
+    1px -1px 0.0 0.0px #929292,
+    1.25px -1.25px 0.0 0.0px #8c8c8c,
+    1.5px -1.5px 0.0 0.0px #8c8c8c,
+    1.75px -1.75px 0.0 0.0px #6b6b6b,
+    2px -2px 0.0 0.0px #6b6b6b,
+    2.25px -2.25px 0.0 0.0px #6b6b6b,
+    2.5px -2.5px 0.0 0.0px #6b6b6b,
+    2.75px -2.75px 0.0 0.0px #585858,
+    3px -3px 0.0 0.0px #585858,
+    3.25px -3.25px 0.0 0.0px #4a4a4a,
+    3.5px -3.5px 0.0 0.0px #3e3e3e,
+      10.5px -7.5px 25.0px 0.0px rgba(96,96,96,0.3); 
+}
+
+.pop-up {
+  width: 44%;
+}
+
+.desktop {
+  height: 100%;
+}
 }

@@ -1,5 +1,5 @@
 import { createObserver } from "./utils.js";
-import { load, state,  getPath,  getNextPath,  getBasePath,  loadPage,  base,  routes, } from "./utils-routing.js";
+import { load, state,  getPath,  getNextPath,  getBasePath,  loadPage,  base,  routes} from "./utils-routing.js";
 
 export const animations = {
   "img[data-src]": hydrate,
@@ -8,54 +8,62 @@ export const animations = {
   "#brand-grid": lazyLoadiFrame,
   "#spam": popUp,
   "#exploration": exploration,
-  ".rotate": rotateFloat,
-
+  ".rotated": rotateFloat,
+  "#project-display": hydrate,
 };
 
-function clickSlider(container, next, previous) {
-  const totalCards = 3;
-  let cardNumber = 1;
-  let newCard;
+const roles = {
+  main: "",
+  wnrs: `<span class = "small label">SENIOR DIGITAL DESIGNER</span><br>
+    <span class = "small label">2022 - 2025</span><br></br>`,
+  m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
+  <span class = "small label">2020 - 2022</span><br></br>`,
+  misc: `<span class = "small label">DESIGNER</span><br>
+  <span class = "small label">2016 - NOW</span><br></br>`, 
+};
 
-  async function showNext(event) {
-    const cards = [];
-    for (let i = 1; i <= totalCards; i++) {
-      cards[i] = `../../images/wnrs/card-${i}.png`;
-    }
-  
-    if (window.getComputedStyle(title).display !== "none") {
-      title.classList.add("hidden");
-    }
-  
-    if (cardNumber <= totalCards) {
-      if (cardContainer.contains(newCard)) {
-        newCard.classList.remove("move-in");
-        newCard.classList.add("move-out");
-        await delay(200);
-        newCard.remove();
-      }
-  
-      newCard = document.createElement("img");
-      newCard.src = cards[cardNumber];
-      newCard.classList.add("card", "move-in");
-      cardContainer.append(newCard);
-      cardNumber++;
-    } else {
-      newCard.remove();
-      title.classList.remove("hidden");
-      cardNumber = 1;
-    }
-  }
-}
 
 
 export function exploration() {
   let title = document.querySelector("#title");
   let next = document.querySelector("#next");
   let previous = document.querySelector("#previous");
-  let cardContainer = document.querySelector("#card-container");
+  let container = document.querySelector("#card-container");
 
-  next.addEventListener("click", showNext);
+  const total = 3;
+  let current = 1;
+  let newCard;
+
+function clickSlider() {
+  title.classList.remove("move-in");
+    const cards = [];
+    for (let i = 0; i < total; i++) {
+      cards[i] = `../../images/x-edition/card-${+i + 1}.png`;
+    }
+  
+    if (current <= total) {
+      if (container.contains(title)) {
+        title.remove();
+      }
+      container.innerHTML = "";
+      newCard = document.createElement("img");
+      newCard.src = cards[current - 1];
+      newCard.classList.add("card", "move-in");
+      container.append(newCard);
+      current++;
+    } 
+    
+    else {
+      newCard.remove();
+      container.append(title);
+      title.classList.add("move-in");
+      current = 1;
+    }
+  }
+
+
+
+  next.addEventListener("click", (event) => {clickSlider(event, container, next, previous)});
 }
 
 export function popUp(div) {
@@ -143,10 +151,10 @@ export async function hydrate(element) {
   }
 
   if (element.matches("DIV")) {
-    // console.log("path: " + element.dataset.href);
+    //console.log("path: " + element.dataset.href);
     const page = document.createElement("div");
     page.innerHTML = await loadPage(element.dataset.href);
-    page.classList.add("hydrated-page");
+    page.querySelectorAll("img[data-src]").forEach(img => hydrate(img));
     element.innerHTML = "";
     element.append(page);
     //console.log("Container: " + element.id);
@@ -169,7 +177,7 @@ export function lazyLoadiFrame(container) {
       iframe.setAttribute("loading", "lazy");
       iframe.classList.add("appended-page");
       container.append(iframe);
-      console.log("iframe created");
+      //console.log("iframe created");
     }
   };
 
@@ -177,7 +185,7 @@ export function lazyLoadiFrame(container) {
     if (iframe) {
       container.removeChild(iframe);
       iframe = null;
-      console.log("iframe removed");
+      //console.log("iframe removed");
     }
   };
 
@@ -204,24 +212,58 @@ export function lazyLoadiFrame(container) {
 }
 
 export async function rotateFloat(element) {
-  let reverse = false;
-  element.addEventListener('mouseenter', async() => {
-    element.style.animation = 'none';
-    element.style.animation= 'rotateBack 300ms ease-in-out forwards';  
-    if (element.matches("reversefloat-rotate")) {
-      reverse = true;
-    }
-    //await delay(300);  
-    //el.style.animation= 'float 2s ease-in-out infinite';    
-    });
+  let reverse = element.matches(".reverse");
 
-    element.addEventListener('mouseleave', async () => {
-      element.style.animation= 'rotate  300ms ease-in-out infinite'; 
-      await delay(300);  
-      if(reverse) {
-        element.style.animation = 'reverseFloatRotate 2s ease-in-out infinite';
-      }
-      element.style.animation = 'floatRotate 2s ease-in-out infinite';
-    
-    });
+  element.addEventListener("mouseenter", async () => {
+    element.style.animation = "rotateBackFocus 300ms ease-in-out forwards";
+    await delay(300);
+
+  });
+
+  element.addEventListener("mouseleave", async () => {
+    element.style.animation = "none";
+    element.style.animation = "rotateBackBlur 300ms ease-in-out forwards";
+    await delay(300);
+    if (reverse) {
+      element.style.animation = "reverseFloatRotate 2s ease-in-out infinite";
+    } else {
+      element.style.animation = "floatRotate 2s ease-in-out infinite";
+    }
+  });
+}
+
+
+export async function updateSideInfo(path) {
+  const info = document.querySelector(".info");  
+  let sidebarPath = getBasePath(path) + "-info";
+  //console.log("Updating sidebar with path: " + sidebarPath);
+
+  if (!info) {
+    //console.log("infobar or info not found");
+    return;
+  }
+  if (!routes[sidebarPath]) {
+    sidebarPath = "/main-info";
+  }
+
+  info.innerHTML = "";
+  let newInfo = await loadPage(sidebarPath);
+  info.innerHTML = newInfo;
+  info.querySelectorAll("img[data-src]").forEach(img => hydrate(img));
+  return newInfo;
+}
+
+
+export async function updateRole(path) {
+  for (let role in roles) {
+    if (path.includes(role)) {
+      let overlay = document.querySelector(".overlay");
+
+      overlay.classList.remove("slide-down");
+      void overlay.offsetWidth; 
+      
+      overlay.innerHTML = roles[role];
+      overlay.classList.add("slide-down");
+    }
+  }
 }
