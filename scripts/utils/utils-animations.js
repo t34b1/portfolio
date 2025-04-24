@@ -38,7 +38,7 @@ function clickSlider() {
   title.classList.remove("move-in");
     const cards = [];
     for (let i = 0; i < total; i++) {
-      cards[i] = `../../images/x-edition/card-${+i + 1}.png`;
+      cards[i] = `/images/x-edition/card-${+i + 1}.png`;
     }
   
     if (current <= total) {
@@ -47,7 +47,7 @@ function clickSlider() {
       }
       container.innerHTML = "";
       newCard = document.createElement("img");
-      newCard.src = cards[current - 1];
+      newCard.src = base + cards[current - 1];
       newCard.classList.add("card", "move-in");
       container.append(newCard);
       current++;

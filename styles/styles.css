@@ -547,7 +547,7 @@ a {
 
   .desktop {
     position: relative;
-    background: url("/images/x-edition/desktop.jpg") top center / cover no-repeat;
+    background: url("portfolio/images/x-edition/desktop.jpg") top center / cover no-repeat;
     height: 50vh;
     width: 100%;
   }
@@ -706,7 +706,7 @@ a {
   }
 
   .info {
-    margin-bottom: calc(var(--gap) * 2);
+    margin-bottom: calc(var(--gap));
   }
 
   .scroll-wrapper {
@@ -757,9 +757,9 @@ a {
   }
 
   #nav img {
-    height: 22px;
+    height: 20px;
     width: auto;
-    margin-right: var(--small-gap);
+    margin-right: var(--gap);
   }
 
   .nav-1 {

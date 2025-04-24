@@ -116,15 +116,17 @@ export async function load(path, destination = app, lazyLoad = false) {
     //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
 
     if (isMain) page.className = "appended-page";
-    if (isNav || isSidebar ) return;
-
-    page.classList.remove("slide-in");
-    void page.offsetWidth; 
-    page.classList.add("slide-in"); 
+    if (isNav) return;
 
     updateSideInfo(path);
     updateRole(path);
-  
+
+    if (!isSidebar) {
+      page.classList.remove("slide-in");
+      void page.offsetWidth; 
+      page.classList.add("slide-in"); 
+    }
+
     if (isProjectsPage && state.nextPath) {
       //console.log("Loading next");
       load(state.nextPath, destination, true);
