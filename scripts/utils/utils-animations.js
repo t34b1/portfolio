@@ -10,6 +10,7 @@ export const animations = {
   "#exploration": exploration,
   ".rotated": rotateFloat,
   "#project-display": hydrate,
+  "#piggy-solutions": lazyLoadiFrame,
 };
 
 const roles = {
@@ -170,14 +171,16 @@ export function lazyLoadiFrame(container) {
   let isVisible = false;
   let path = getPath(container.dataset.src);
 
-  const createIframe = () => {
+  async function createIframe()  {
+    container.innerHTML = "";
+
     if (!iframe) {
       iframe = document.createElement("iframe");
       iframe.src = base + path;
       iframe.setAttribute("loading", "lazy");
       iframe.classList.add("appended-page");
       container.append(iframe);
-      //console.log("iframe created");
+      await delay(1000);
     }
   };
 
@@ -189,17 +192,22 @@ export function lazyLoadiFrame(container) {
     }
   };
 
-  function handleiFrame(entry) {
+  async function handleiFrame(entry) {
     isVisible = entry.isIntersecting;
     if (isVisible && !iframe && !document.hidden) {
+      console.log(iframe);
       createIframe();
+      //await delay(500);
+      //console.log(iframe);
+
     }
     if (!isVisible && iframe) {
       destroyIframe();
     }
+    return;
   }
 
-  createObserver(container, handleiFrame, false, { threshold: 0 });
+  createObserver(container, handleiFrame, true, { threshold: 0 });
 
   // 👁️ Tab visibility handler
   document.addEventListener("visibilitychange", () => {

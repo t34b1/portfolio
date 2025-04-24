@@ -151,8 +151,13 @@ a {
 .m6.dark {
   --bg-color: #191919;
 }
+
+.piggy.sage {
+  --bg-color: #D2E7E3;
+}
+
 .m6,
-.wnrs {
+.wnrs, .piggy {
   color: var(--text-color);
   background-color: var(--bg-color);
 }
@@ -510,9 +515,7 @@ a {
     transition: background-color 300ms ease-in-out 0s;
   }
 
-  .label.button:hover {
-    background:  #685560;
-  }
+ 
  
   ul {
     list-style-type: none;
@@ -547,7 +550,7 @@ a {
 
   .desktop {
     position: relative;
-    background: url("portfolio/images/x-edition/desktop.jpg") top center / cover no-repeat;
+    background: url("/portfolio/images/x-edition/desktop.jpg") top center / cover no-repeat;
     height: 50vh;
     width: 100%;
   }
@@ -559,10 +562,7 @@ a {
     top: 40%;
   }
 
-  .underneath {
-    position: absolute;
-    z-index: -10;
-  }
+
 }
 
 /*------------------------------------------ Tablet and up (min-width: 768px) ------------------------------------------*/

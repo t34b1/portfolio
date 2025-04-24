@@ -41,10 +41,14 @@ export const routes = {
   "/projects/x-2": "/projects/x-edition/x-2.html",
   "/projects/x-3": "/projects/x-edition/x-3.html",
   "/projects/x-info": "/projects/x-edition/x-info.html",
-
-
   "/projects/pop-up": "/projects/x-edition/pop-up.html",
   "/projects/exploration": "/projects/x-edition/self-exploration-pack.html",
+
+  "/projects/piggy-0": "/projects/piggy/piggy-0.html",
+  "/projects/piggy-1": "/projects/piggy/piggy-1.html",
+  "/projects/piggy-solutions": "/projects/piggy/piggy-solutions.html",
+
+
 
   "/projects/misc-0": "/projects/misc/misc-0.html",
   "/projects/misc-1": "/projects/misc/misc-1.html",
@@ -168,7 +172,7 @@ export async function navigate(event) {
     window.open(href, "_blank");
     return;
   }
-  
+
   location.hash = href;
 }
 
