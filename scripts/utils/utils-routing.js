@@ -164,6 +164,7 @@ export async function navigate(event) {
   const href = link.getAttribute("href");
   const isExternal = href.startsWith("http") || href.includes(".");
 
+  if (isExternal) {
     window.open(href, "_blank");
     return;
   }
