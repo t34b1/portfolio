@@ -162,8 +162,13 @@ export async function navigate(event) {
 
   event.preventDefault();
   const href = link.getAttribute("href");
+  const isExternal = href.startsWith("http") || href.includes(".");
+
+    window.open(href, "_blank");
+    return;
+  }
+  
   location.hash = href;
-  return;
 }
 
 export async function handleHashChange(event) {
