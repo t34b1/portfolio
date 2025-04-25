@@ -46,7 +46,8 @@ export const routes = {
 
   "/projects/piggy-0": "/projects/piggy/piggy-0.html",
   "/projects/piggy-1": "/projects/piggy/piggy-1.html",
-  "/projects/piggy-solutions": "/projects/piggy/piggy-solutions.html",
+  "/projects/piggy-2": "/projects/piggy/piggy-2.html",
+  "/projects/piggy-info": "/projects/piggy/piggy-info.html",
 
 
 

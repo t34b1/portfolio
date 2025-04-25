@@ -20,7 +20,9 @@ const roles = {
   m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
   <span class = "small label">2020 - 2022</span><br></br>`,
   misc: `<span class = "small label">DESIGNER</span><br>
-  <span class = "small label">2016 - NOW</span><br></br>`, 
+  <span class = "small label">2018 - NOW</span><br></br>`, 
+  piggy: `<span class = "small label">UX DESIGNER</span><br>
+  <span class = "small label">2024</span><br></br>`
 };
 
 
@@ -263,6 +265,8 @@ export async function updateSideInfo(path) {
 
 
 export async function updateRole(path) {
+  if (path.includes("x") || path.includes("sl")) path = "wnrs";
+
   for (let role in roles) {
     if (path.includes(role)) {
       let overlay = document.querySelector(".overlay");

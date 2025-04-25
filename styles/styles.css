@@ -154,6 +154,12 @@ a {
 
 .piggy.sage {
   --bg-color: #D2E7E3;
+  --text-color: #63AC88;
+}
+
+.piggy.matcha {
+  --bg-color: #32855C;
+  --text-color: #D2E7E3;
 }
 
 .m6,
@@ -706,7 +712,7 @@ a {
   }
 
   .info {
-    margin-bottom: calc(var(--gap));
+    margin-bottom: calc(var(--gap) * 2);
   }
 
   .scroll-wrapper {
