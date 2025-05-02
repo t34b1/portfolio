@@ -184,13 +184,15 @@ export async function load(path, destination = app, lazyLoad = false) {
       menu.addEventListener("click", toggleMenu);
 
       let modeSelector = document.querySelector(".mode");
+      console.log(modeSelector);
       let highlight = document.querySelector(".highlight");
+      console.log(highlight);
       highlight.style.transition = "transform .3s ease";
 
       modeSelector.addEventListener("click", () => {
-        console.log(document.body);
+        console.log("clicked");
         if ( document.body.dataset.mode == "dark") {
-          highlight.style.transform = "translateX(-100%)";
+          highlight.style.transform = "translateX(100%)";
           document.body.dataset.mode = "light";
 
         }

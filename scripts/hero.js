@@ -1,7 +1,7 @@
 let cols, rows;
-let cellSize = 15;
+let cellSize = 10;
 let binaryGrid = [];
-let flowerRadius = 20;
+let flowerRadius = 15;
 let center;
 let angleOffset = 0;
 let flipTimers = [];

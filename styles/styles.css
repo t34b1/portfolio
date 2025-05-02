@@ -205,6 +205,14 @@ a {
   --bg-color: #E7E7E7;
   --head-color: #c10016;
 }
+
+.wnrs.pink {
+  --bg-color: #FFBDD1;
+  --text-color: #c10016;
+  --head-color: #c10016;
+
+}
+
 .m6.blue {
   --bg-color: #0a2155;
 }
@@ -287,7 +295,7 @@ a {
   }
 
   body[data-mode = "light"] {
-    --bg-color: #dad9d9;
+    --bg-color: #ffffff;
     --text-color: rgb(10, 10, 10);
     --head-color: rgb(10, 10, 10);
     --button-color: rgba(10, 10, 10, 0.1);
@@ -438,7 +446,7 @@ a {
   }
 
   #display .project {
-    filter: brightness(0.4) grayscale(30%); 
+    filter: brightness(0.4); 
     transition: filter 0.3s ease;
     border-radius: var(--radius);
   }
@@ -448,11 +456,12 @@ a {
     object-fit: cover;
     aspect-ratio: 1/1;
     border-radius: var(--radius);
+    margin-bottom: var(--small-gap);
 
   }
 
   #display .project:hover {
-    filter: brightness(0.9) grayscale(0%);
+    filter: brightness(0.9);
   }
 
 
@@ -809,6 +818,7 @@ a {
   }
 
   .mode {
+    /*
     display: flex;
     position: absolute;
     top: calc(var(--gap) / 2 );
@@ -817,6 +827,7 @@ a {
     width: calc(var(--gap)*2);
     background: var(--button-color);
     border-radius: 50px;
+    */
   }
 
   .mode > div {
@@ -976,6 +987,7 @@ a {
     padding: 0;
     top: 0;
     left: 0;
+    max-width: max-content;
   }
 
   
