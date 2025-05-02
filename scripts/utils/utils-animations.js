@@ -14,15 +14,16 @@ export const animations = {
 };
 
 const roles = {
-  main: "",
-  wnrs: `<span class = "small label">SENIOR DIGITAL DESIGNER</span><br>
-    <span class = "small label">2022 - 2025</span><br></br>`,
+  main: `<span class = "small" style = "opacity: .7;">Hero animation created in p5.js using generative AI procedural logic<br></span><br>
+  <span class = "small " style = "opacity: .7;">2025</span>`,
+  wnrs: `<span class = "label">SENIOR DIGITAL DESIGNER</span><br>
+    <span class = "label">2022 - 2025</span>`,
   m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
-  <span class = "small label">2020 - 2022</span><br></br>`,
+  <span class = "small label">2020 - 2022</span>`,
   misc: `<span class = "small label">DESIGNER</span><br>
-  <span class = "small label">2018 - NOW</span><br></br>`, 
+  <span class = "small label">2018 - NOW</span>`, 
   piggy: `<span class = "small label">UX DESIGNER</span><br>
-  <span class = "small label">2024</span><br></br>`
+  <span class = "small label">2024</span>`
 };
 
 

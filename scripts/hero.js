@@ -7,7 +7,6 @@ let angleOffset = 0;
 let flipTimers = [];
 
 function setup() {
-  console.log("starting animation");
 
   createCanvas(windowWidth * 1.01, windowHeight * 1.01);
   textFont('monospace');
@@ -49,7 +48,9 @@ function flipNearbyCells(cx, cy, radius) {
 }
 
 function draw() {
-  background("#221314");
+  //background(34, 19, 20, 50);
+  clear();
+
   angleOffset += 0.01;
 
   let pulse = sin(frameCount * 0.05) * 1.2;
@@ -57,7 +58,7 @@ function draw() {
   let cy = center.y + cos(angleOffset) * 5;
   let now = millis();
 
-  let secret = "remember";
+  let secret = "you found the secret message!";
   let revealDelay = 300;
   let messageStartTime = 2000;
   let secretStartX = floor(center.x - secret.length / 2);

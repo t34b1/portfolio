@@ -104,6 +104,62 @@ export function getNextPath(path) {
   return nextPath;
 }
 
+async function toggleMenu(event) {
+  const menuIcon = event ? event.target : document.querySelector(".menu-icon");
+  const menuIconImg = menuIcon.querySelector("IMG");
+  const menu = document.querySelector(".menu");
+  const icons = menu.querySelectorAll(".icon");
+  const heading = document.querySelector(".heading");
+  let isOpen = menu.matches(".open");
+
+  function openMenu() {
+    menuIconImg.style.transition = "transform .5s ease";
+    menuIconImg.style.transform = "rotate(-135deg)";
+    heading.classList.add("fade-out");
+    icons.forEach(icon => {
+      icon.classList.remove("fade-out");
+      icon.classList.add("fade-in");
+    });
+
+    menuIcon.style.borderRadius = "0 50px 50px 0px";
+    menu.classList.remove("move-out-right");
+    menu.classList.add("move-in-right");
+    menu.classList.add("open");
+  }
+  async function closeMenu() {
+    menuIconImg.style.transform = "rotate(0deg)";
+    icons.forEach(icon => {
+      icon.classList.remove("fade-in");
+      icon.classList.add("fade-out");
+
+    });
+    heading.classList.remove("fade-out");
+    heading.classList.add("fade-in");
+
+    menu.classList.remove("open", "move-in-right");
+    menu.classList.add("move-out-right");
+    await delay(100);
+    menuIcon.style.borderRadius = "50px";
+  
+  }
+
+  if (!event) {
+    if (isOpen) closeMenu();
+    return;
+  }
+
+  if (!isOpen) {
+   openMenu();
+  }
+
+  else {
+   closeMenu();
+  }
+ 
+}
+
+
+
 export async function load(path, destination = app, lazyLoad = false) {
   //console.log("Loading... Path passed into load: " + path);
   if (path == null) return;
@@ -113,6 +169,8 @@ export async function load(path, destination = app, lazyLoad = false) {
   const isNav = path.includes("/nav");
   const isSidebar = path.includes("/sidebar");
   const isMain = path.includes("/main");
+  
+
 
   if (isInitialPage) {
     destination.innerHTML = "";
@@ -121,7 +179,32 @@ export async function load(path, destination = app, lazyLoad = false) {
     //console.log("Added to  " + (destination.id || destination.classList) + ": " + path);
 
     if (isMain) page.className = "appended-page";
-    if (isNav) return;
+    if (isNav) {
+      const menu = document.querySelector(".menu-icon");
+      menu.addEventListener("click", toggleMenu);
+
+      let modeSelector = document.querySelector(".mode");
+      let highlight = document.querySelector(".highlight");
+      highlight.style.transition = "transform .3s ease";
+
+      modeSelector.addEventListener("click", () => {
+        console.log(document.body);
+        if ( document.body.dataset.mode == "dark") {
+          highlight.style.transform = "translateX(-100%)";
+          document.body.dataset.mode = "light";
+
+        }
+
+        else if (document.body.dataset.mode == "light") {
+          highlight.style.transform = "translateX(0)";
+          document.body.dataset.mode = "dark";
+
+        }
+        
+      });
+
+      return;
+    }
 
     updateSideInfo(path);
     updateRole(path);
@@ -162,6 +245,7 @@ export async function append(path, destination) {
 }
 
 export async function navigate(event) {
+ 
   const link = event.target.closest("a");
   if (!link) return;
 
@@ -173,14 +257,32 @@ export async function navigate(event) {
     window.open(href, "_blank");
     return;
   }
+  if (event.target.matches(".menu-icon")) {
+    return;
+  }
 
   location.hash = href;
 }
+
+const bgColors = {
+  wnrs: "linear-gradient(#A10012, black)",
+  m6: "linear-gradient(#041230, black)",
+}
+
 
 export async function handleHashChange(event) {
   const path = location.hash.replace("#", "") || "/main-0";
   updateState(path);
   await load(path, app, false);
+  toggleMenu();
+/*
+  for (let color in bgColors) {
+    if (path.includes(color)) {
+      console.log("changing background color");
+      document.body.style.background = bgColors[color];
+    }
+  }
+    */
 
   document.querySelector("#sidebar").scrollTo({
     top: 0,
