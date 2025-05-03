@@ -8,7 +8,7 @@ let flipTimers = [];
 
 function setup() {
 
-  createCanvas(windowWidth * 1.01, windowHeight * 1.01);
+  createCanvas(windowWidth * 1, windowHeight * 1);
   textFont('monospace');
   textSize(cellSize * .8);
   textAlign(CENTER, CENTER);
@@ -121,9 +121,9 @@ function draw() {
       }
 
       if (output !== "") {
-        fill("#F4F4F4");
+        fill("#c5c5c5");
       } else {
-        fill("#F4F4F4");
+        fill("#c5c5c5");
       }
 
       text(output, px, py);

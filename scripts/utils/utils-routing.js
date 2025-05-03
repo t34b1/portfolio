@@ -1,4 +1,4 @@
-import { animations, animate, addLazyTargetTo, delay, updateSideInfo, updateRole} from "./utils-animations.js";
+import { animations, animate, addLazyTargetTo, delay, updateSideInfo, updateRole, toggleMode, toggleMenu} from "./utils-animations.js";
 
 export const isLocal =
   location.hostname === "127.0.0.1" || location.hostname === "localhost";
@@ -104,61 +104,6 @@ export function getNextPath(path) {
   return nextPath;
 }
 
-async function toggleMenu(event) {
-  const menuIcon = event ? event.target : document.querySelector(".menu-icon");
-  const menuIconImg = menuIcon.querySelector("IMG");
-  const menu = document.querySelector(".menu");
-  const icons = menu.querySelectorAll(".icon");
-  const heading = document.querySelector(".heading");
-  let isOpen = menu.matches(".open");
-
-  function openMenu() {
-    menuIconImg.style.transition = "transform .5s ease";
-    menuIconImg.style.transform = "rotate(-135deg)";
-    heading.classList.add("fade-out");
-    icons.forEach(icon => {
-      icon.classList.remove("fade-out");
-      icon.classList.add("fade-in");
-    });
-
-    menuIcon.style.borderRadius = "0 50px 50px 0px";
-    menu.classList.remove("move-out-right");
-    menu.classList.add("move-in-right");
-    menu.classList.add("open");
-  }
-  async function closeMenu() {
-    menuIconImg.style.transform = "rotate(0deg)";
-    icons.forEach(icon => {
-      icon.classList.remove("fade-in");
-      icon.classList.add("fade-out");
-
-    });
-    heading.classList.remove("fade-out");
-    heading.classList.add("fade-in");
-
-    menu.classList.remove("open", "move-in-right");
-    menu.classList.add("move-out-right");
-    await delay(100);
-    menuIcon.style.borderRadius = "50px";
-  
-  }
-
-  if (!event) {
-    if (isOpen) closeMenu();
-    return;
-  }
-
-  if (!isOpen) {
-   openMenu();
-  }
-
-  else {
-   closeMenu();
-  }
- 
-}
-
-
 
 export async function load(path, destination = app, lazyLoad = false) {
   //console.log("Loading... Path passed into load: " + path);
@@ -169,8 +114,6 @@ export async function load(path, destination = app, lazyLoad = false) {
   const isNav = path.includes("/nav");
   const isSidebar = path.includes("/sidebar");
   const isMain = path.includes("/main");
-  
-
 
   if (isInitialPage) {
     destination.innerHTML = "";
@@ -180,31 +123,11 @@ export async function load(path, destination = app, lazyLoad = false) {
 
     if (isMain) page.className = "appended-page";
     if (isNav) {
-      const menu = document.querySelector(".menu-icon");
+      const menu = document.querySelector(".menu-button");
       menu.addEventListener("click", toggleMenu);
 
-      let modeSelector = document.querySelector(".mode");
-      console.log(modeSelector);
-      let highlight = document.querySelector(".highlight");
-      console.log(highlight);
-      highlight.style.transition = "transform .3s ease";
-
-      modeSelector.addEventListener("click", () => {
-        console.log("clicked");
-        if ( document.body.dataset.mode == "dark") {
-          highlight.style.transform = "translateX(100%)";
-          document.body.dataset.mode = "light";
-
-        }
-
-        else if (document.body.dataset.mode == "light") {
-          highlight.style.transform = "translateX(0)";
-          document.body.dataset.mode = "dark";
-
-        }
-        
-      });
-
+      //const modeSelector = document.querySelector(".mode");
+      //modeSelector.addEventListener("click", toggleMode);
       return;
     }
 
@@ -259,7 +182,7 @@ export async function navigate(event) {
     window.open(href, "_blank");
     return;
   }
-  if (event.target.matches(".menu-icon")) {
+  if (event.target.matches(".menu-button")) {
     return;
   }
 

@@ -1,5 +1,6 @@
 import { createObserver } from "./utils.js";
 import { load, state,  getPath,  getNextPath,  getBasePath,  loadPage,  base,  routes} from "./utils-routing.js";
+import { icons } from "./icons.js";
 
 export const animations = {
   "img[data-src]": hydrate,
@@ -14,8 +15,8 @@ export const animations = {
 };
 
 const roles = {
-  main: `<span class = "small" style = "opacity: .7;">Hero animation created in p5.js using generative AI procedural logic<br></span><br>
-  <span class = "small " style = "opacity: .7;">2025</span>`,
+  main: `<span class = "small" style = "opacity: .5;">Hero animation created in p5.js using generative AI procedural logic<br></span><br>
+  <span class = "small " style = "opacity: .5;">2025</span>`,
   wnrs: `<span class = "label">SENIOR DIGITAL DESIGNER</span><br>
     <span class = "label">2022 - 2025</span>`,
   m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
@@ -26,7 +27,90 @@ const roles = {
   <span class = "small label">2024</span>`
 };
 
+export async function toggleMenu(event) {
+  const menuIcon = event ? event.target : document.querySelector(".menu-button");
+  const menuIconImg = menuIcon.querySelector("svg");
+  const menu = document.querySelector(".menu");
+  const icons = menu.querySelectorAll(".icon");
+  const heading = document.querySelector(".heading");
+  let isOpen = menu.matches(".open");
 
+  function openMenu() {
+    menuIconImg.style.transition = "transform .5s ease";
+    menuIconImg.style.transform = "rotate(-135deg)";
+    heading.classList.add("fade-out");
+    icons.forEach(icon => {
+      icon.classList.remove("fade-out");
+      icon.classList.add("fade-in");
+    });
+
+    menuIcon.style.borderRadius = "0 50px 50px 0px";
+    menu.classList.remove("move-out-right");
+    menu.classList.add("move-in-right");
+    menu.classList.add("open");
+  }
+  async function closeMenu() {
+    menuIconImg.style.transform = "rotate(0deg)";
+    icons.forEach(icon => {
+      icon.classList.remove("fade-in");
+      icon.classList.add("fade-out");
+
+    });
+    heading.classList.remove("fade-out");
+    heading.classList.add("fade-in");
+
+    menu.classList.remove("open", "move-in-right");
+    menu.classList.add("move-out-right");
+    await delay(100);
+    menuIcon.style.borderRadius = "50px";
+  
+  }
+
+  if (!event) {
+    if (isOpen) closeMenu();
+    return;
+  }
+
+  if (!isOpen) {
+   openMenu();
+  }
+
+  else {
+   closeMenu();
+  }
+ 
+}
+
+export function toggleMode(event) {
+  const highlight = document.querySelector(".highlight");
+  const sun = event.target.querySelector(".sun");
+  const moon = event.target.querySelector(".moon");
+  highlight.style.transition = "transform .3s ease";
+ 
+  if ( document.body.dataset.mode == "dark") {
+    highlight.style.transform = "translateX(0)";
+    document.body.dataset.mode = "light";
+    moon.innerHTML = icons["moon-stroke"];
+    sun.innerHTML = icons["sun-fill"];
+  }
+
+  else if (document.body.dataset.mode == "light") {
+    highlight.style.transform = "translateX(100%)";
+    document.body.dataset.mode = "dark";
+    moon.innerHTML = icons["moon-fill"];
+    sun.innerHTML = icons["sun-stroke"];
+  }
+}
+
+export function fillIcons() {
+  const docIcons = document.querySelectorAll('[data-icon]');
+  docIcons.forEach((icon) => {
+    const key = icon.dataset.icon;
+    if (icons[key]) {
+      icon.innerHTML = icons[key];
+    }
+  });
+}
 
 export function exploration() {
   let title = document.querySelector("#title");
@@ -64,9 +148,6 @@ function clickSlider() {
       current = 1;
     }
   }
-
-
-
   next.addEventListener("click", (event) => {clickSlider(event, container, next, previous)});
 }
 
@@ -198,7 +279,7 @@ export function lazyLoadiFrame(container) {
   async function handleiFrame(entry) {
     isVisible = entry.isIntersecting;
     if (isVisible && !iframe && !document.hidden) {
-      console.log(iframe);
+      //console.log(iframe);
       createIframe();
       //await delay(500);
       //console.log(iframe);
