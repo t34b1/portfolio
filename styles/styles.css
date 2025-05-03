@@ -239,7 +239,6 @@ a {
 }
 
 
-
 /*------------------------------------------ Blur Effects ------------------------------------------*/
 
 .blur-wrapper {
@@ -330,6 +329,10 @@ a {
     display: inline-block;
   }
 
+  span.very.small {
+    font-size: 16px;
+  }
+
   span.label {
     font-family: "ibm-plex-mono", sans-serif;
     font-size: 14px;
@@ -381,18 +384,21 @@ a {
   }
 
   .heading {
-    position: absolute;
-    top: calc(var(--gap) / 2 + 4px);
-    left: var(--small-gap);
-    z-index: 7;
-    opacity: 1;
+    display: none;
+  }
+
+  .mobile-heading {
+    position: fixed;
+    bottom: var(--gap);
+    left: var(--gap);
+    z-index: 100;
   }
 
   .overlay {
     position: fixed;
     z-index: 20;
-    bottom: calc(var(--gap) * 3);
-    right: var(--small-gap);
+    top: calc(var(--gap) * 3);
+    left: var(--small-gap);
   }
 
   #footer {
@@ -727,7 +733,10 @@ a {
   h3 { font-size: 24px; }
   h4 { font-size: 20px; }
   bodycopy { font-size: 20px; }
-  span.small { font-size: 14px; }
+  span.small { font-size: 16px; }
+  span.very.small {
+    font-size: 14px;
+  }
   span.label { font-size: 12px; }
 
   #nav {
@@ -797,6 +806,10 @@ a {
     left: var(--gap);
     z-index: 7;
     opacity: 1;
+  }
+
+  .mobile-heading {
+    display: none;
   }
 
   .overlay {    
@@ -891,6 +904,10 @@ a {
   }
 
   span.small {
+    font-size: 16px;
+  }
+
+  span.very.small {
     font-size: 14px;
   }
 

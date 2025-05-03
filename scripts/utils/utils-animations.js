@@ -15,8 +15,8 @@ export const animations = {
 };
 
 const roles = {
-  main: `<span class = "small" style = "opacity: .5;">Hero animation created in p5.js using generative AI procedural logic<br></span><br>
-  <span class = "small " style = "opacity: .5;">2025</span>`,
+  main: `<span class = "very small" style = "opacity: .5;">Hero animation created in p5.js using generative AI procedural logic<br></span><br>
+  <span class = "very small" style = "opacity: .5;">2025</span>`,
   wnrs: `<span class = "label">SENIOR DIGITAL DESIGNER</span><br>
     <span class = "label">2022 - 2025</span>`,
   m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
