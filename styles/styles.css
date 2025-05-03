@@ -391,8 +391,8 @@ a {
   .overlay {
     position: fixed;
     z-index: 20;
-    top: calc(var(--gap) * 3);
-    left: var(--small-gap);
+    bottom: calc(var(--gap) * 3);
+    right: var(--small-gap);
   }
 
   #footer {
@@ -535,16 +535,16 @@ a {
 
   .sec-a {
     grid-area: a;
-    max-height: 60vh;
+    max-height: 70vh;
   }
   .sec-b {
     grid-area: b;
-    max-height: 60vh;
+    max-height: 70vh;
   }
 
   .sec-c {
     grid-area: c;
-    max-height: 60vh;
+    max-height: 70vh;
   }
 
   table {
