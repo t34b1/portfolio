@@ -801,6 +801,7 @@ a {
   }
 
   .heading {
+    display: block;
     position: absolute;
     top: calc(var(--gap) / 2 + 4px);
     left: var(--gap);
