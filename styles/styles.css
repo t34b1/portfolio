@@ -146,22 +146,15 @@ a {
 
 .fade-in  { animation: fadeIn 0.3s ease forwards; }
 .fade-out  { animation: fadeOut 0.3s ease forwards; }
-
 .move-in  { animation: moveIn 0.4s ease-out forwards; }
 .move-in-right { animation: moveInRight 0.4s ease-out forwards;}
 .move-out-right { animation: moveOutRight 0.4s ease-out forwards;}
-
 .move-out { animation: moveOut 0.4s ease-out forwards; }
 .slide-in { animation: slideIn 0.5s ease forwards; }
 .slide-down { animation: slideDown 0.5s ease forwards; }
-
 .floating { animation: float 2s ease-in-out infinite; }
-
 .floating.reverse { animation: floatReverse 2s ease-in-out infinite; }
-
 .reverse { animation-direction: reverse; }
-
-
 
 /*------------------------------------------ Theme/Color Variables ------------------------------------------*/
 
@@ -176,18 +169,16 @@ a {
   --bg-color: #e0e0e0;
   --head-color: #c10016;
 }
-
 .wnrs.red {
-  --text-color: #e0e0e0;
+  --text-color: #E7E7E7;
   --bg-color: #c10016;
-  --head-color: #e0e0e0;
+  --head-color: #E7E7E7;
 }
 .wnrs.light {
   --text-color: rgb(25, 24, 24);
   --bg-color: #E7E7E7;
   --head-color: #c10016;
 }
-
 .wnrs.pink {
   --bg-color: #FFBDD1;
   --text-color: #c10016;
@@ -196,8 +187,8 @@ a {
 
 .wnrs.dark {
   --bg-color: rgb(25, 24, 24);
-  --text-color: #e0e0e0;
-  --head-color: #e0e0e0;
+  --text-color: #E7E7E7;
+  --head-color: #E7E7E7;
 }
 
 .m6.blue {
@@ -220,14 +211,12 @@ a {
   --bg-color: #D2E7E3;
   --text-color: #63AC88;
   --head-color: #63AC88;
-
 }
 
 .piggy.matcha {
   --bg-color: #32855C;
   --text-color: #D2E7E3;
-  --head-color: #D2E7E3;
-  
+  --head-color: #D2E7E3; 
 }
 
 .m6,
@@ -296,6 +285,8 @@ a {
   bodycopy {
     font-weight: 400;
     line-height: 1.4em;
+    font-size: 18px;
+    display: block;
   }
 
   span.small, span.label {
@@ -331,11 +322,6 @@ a {
     font-weight: 550;
     line-height: 1.4em;
     margin-bottom: 8px;
-  }
-
-  bodycopy {
-    font-size: 18px;
-    display: block;
   }
 
   span.small {
@@ -392,7 +378,6 @@ a {
   .menu .icon {
     flex-shrink: 1;
     object-fit: contain;
-
   }
 
   .heading {
@@ -421,7 +406,6 @@ a {
   #app {
     margin: 0 var(--small-gap);
     padding-top: calc(var(--gap) * 5);
-   
   }
 
   #display {
@@ -437,7 +421,6 @@ a {
     transition: filter 0.3s ease;
     border-radius: var(--radius);
     margin-bottom: var(--gap);
-
   }
 
   #display .project .thumbnail {
@@ -527,7 +510,7 @@ a {
     width: 100%;
   }
 
-  .layout.a, .layout.b, .layout.c {
+  .layout.a, .layout.b, .layout.c, .layout.e {
     grid-template-areas: 
       "a"
       "b"
@@ -542,7 +525,6 @@ a {
     "b";
     grid-template-columns: 1fr;
     grid-template-rows: auto max-content;
-   
   }
 
   .layout.d.reverse {
@@ -570,7 +552,9 @@ a {
     vertical-align: top;
   }
 
-
+  td, th {
+    padding: 8px;
+  }
 
   .phone-wrapper {
     display: grid;
@@ -738,19 +722,12 @@ a {
     display: flex;
   }
 
-
   h1 { font-size: 28px; }
-
   h2 { font-size: 26px; }
-
   h3 { font-size: 24px; }
-
   h4 { font-size: 20px; }
-
   bodycopy { font-size: 20px; }
-
   span.small { font-size: 14px; }
-
   span.label { font-size: 12px; }
 
   #nav {
@@ -993,6 +970,13 @@ a {
 
   .layout.d.alt.a {
     grid-template-columns: 3fr 2fr;
+  }
+
+  .layout.e {
+    grid-template-areas: 
+      "a b c";
+    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
   }
 
   .sec-a {
