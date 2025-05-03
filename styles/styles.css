@@ -386,16 +386,6 @@ a {
     display: none;
   }
 
-  .mobile-heading {
-    position: fixed;
-    bottom: var(--small-gap);
-    right: var(--small-gap);
-    background: var(--button-color);
-    border-radius: 50px;
-    padding: var(--pad);
-    z-index: 100;
-  }
-
   .overlay {
     position: fixed;
     z-index: 20;
@@ -809,10 +799,6 @@ a {
     left: var(--gap);
     z-index: 7;
     opacity: 1;
-  }
-
-  .mobile-heading {
-    display: none;
   }
 
   .overlay {    
