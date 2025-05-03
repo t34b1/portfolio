@@ -347,7 +347,6 @@ a {
   #nav {
     position: fixed;
     display: flex;
-    flex-direction: row-reverse;
     z-index: 1000;
     width: 100vw;
     padding-bottom: calc(var(--gap) * 3);
@@ -389,8 +388,11 @@ a {
 
   .mobile-heading {
     position: fixed;
-    bottom: var(--gap);
-    left: var(--gap);
+    bottom: var(--small-gap);
+    right: var(--small-gap);
+    background: var(--button-color);
+    border-radius: 50px;
+    padding: var(--pad);
     z-index: 100;
   }
 
