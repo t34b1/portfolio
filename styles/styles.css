@@ -441,7 +441,7 @@ a {
     margin: 0px 0px var(--gap) 0px;
     border-radius: var(--radius);
     background-color: var(--bg-color);
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .no-pad {
@@ -545,13 +545,9 @@ a {
     max-height: 70vh;
   }
 
-  table {
-    text-align: left;
-    vertical-align: top;
-  }
-
-  td, th {
-    padding: 8px;
+  .container .text, .container.text {
+    height: auto; 
+    max-height: none;
   }
 
   .phone-wrapper {
@@ -560,7 +556,7 @@ a {
     height: auto;
     padding: 8px;
     position: relative;
-    max-width: 250px;
+    max-width: 280px;
   }
 
   .phone-wrapper img {
@@ -690,7 +686,6 @@ a {
     --gap: 32px;
     --small-gap: 16px;
   }
-
 
   main {
     height: 100vh;
@@ -920,14 +915,22 @@ a {
   }
   
   .container {
-    height: 630px;
+    height: 75vh;
+    max-height: 1000px;
     overflow-y: hidden;
+  }
+
+  .container .text, .container.text {
+    overflow-y: scroll;
+    scrollbar-width: none;
   }
 
   .phone-wrapper {
     width: 100%;
+    max-width: 250px;
     padding: 0px;
     max-height: 100%;
+    
   }
 
   .layout.a {
@@ -982,7 +985,7 @@ a {
     grid-template-areas: 
       "a b c";
     grid-template-rows: 1fr;
-    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 2fr;
   }
 
   .sec-a {
