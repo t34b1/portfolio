@@ -15,8 +15,7 @@ export const routes = {
   "/footer": "/footer.html",
   "/sidebar": "/sidebar.html",
   "/hero": "/projects/hero.html",
-  "/project-display": "/projects/project-display.html",
-
+  "/project-display": "/sidebar.html",
 
   "/projects/m6-0": "/projects/m6/mutesix-0.html",
   "/projects/m6-1": "/projects/m6/mutesix-1.html",
@@ -35,7 +34,6 @@ export const routes = {
   "/projects/sl-0": "/projects/self-love-edition/sl-0.html",
   "/projects/sl-info": "/projects/self-love-edition/sl-info.html",
 
-
   "/projects/x-0": "/projects/x-edition/x-0.html",
   "/projects/x-1": "/projects/x-edition/x-1.html",
   "/projects/x-2": "/projects/x-edition/x-2.html",
@@ -48,8 +46,6 @@ export const routes = {
   "/projects/piggy-1": "/projects/piggy/piggy-1.html",
   "/projects/piggy-2": "/projects/piggy/piggy-2.html",
   "/projects/piggy-info": "/projects/piggy/piggy-info.html",
-
-
 
   "/projects/misc-0": "/projects/misc/misc-0.html",
   "/projects/misc-1": "/projects/misc/misc-1.html",
