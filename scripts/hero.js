@@ -48,7 +48,6 @@ function flipNearbyCells(cx, cy, radius) {
 }
 
 function draw() {
-  //background(34, 19, 20, 50);
   clear();
 
   angleOffset += 0.01;

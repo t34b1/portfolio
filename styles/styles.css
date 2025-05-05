@@ -274,12 +274,18 @@ a {
     --button-color: #dad9d921;
   }
 
+  
   main {
     width: 100vw;
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
   }
+    
+
+    .section-a {
+      display: none;
+    }
+    .section-b {
+      flex: 1; 
+    }
 
   bodycopy {
     font-weight: 400;
@@ -411,11 +417,11 @@ a {
     display: flex;
     flex-direction: column;
     gap: var(--gap);
-    margin: var(--gap) 0px;
+    /*margin: var(--gap) 0px;*/
   }
 
   #display .project {
-    filter: brightness(0.4); 
+    position: relative;
     transition: filter 0.3s ease;
     border-radius: var(--radius);
     margin-bottom: var(--gap);
@@ -427,10 +433,19 @@ a {
     aspect-ratio: 1/1;
     border-radius: var(--radius);
     margin-bottom: var(--small-gap);
+    box-shadow: 2px 2px 12px black;
   }
 
-  #display .project:hover {
-    filter: brightness(0.9);
+  .two-columns .thumbnail {
+    height: 100%;
+  }
+
+  .two-columns .project-description {
+    display: none;
+  }
+
+  .one-column .project-description {
+    position: relative;
   }
 
   .container {
@@ -442,6 +457,8 @@ a {
     border-radius: var(--radius);
     background-color: var(--bg-color);
     overflow: hidden;
+    box-shadow: 2px 2px 12px black;
+
   }
 
   .no-pad {
@@ -687,32 +704,41 @@ a {
     --small-gap: 16px;
   }
 
+/*
   main {
     height: 100vh;
     grid-template-areas:
-      "a b"
-      "c b";
+      "a b";
     grid-template-columns: 9fr 16fr;
-    grid-template-rows: 16fr 1fr;
+    grid-template-rows:  1fr;
     margin: 0;
     column-gap: var(--gap);
     overflow: hidden;
     padding: 0 var(--gap) var(--gap) var(--gap);
   }
+*/
+
+main {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  gap: var(--gap);
+  padding: 0 var(--gap) var(--gap) var(--gap);
+}
 
   .section-a {
+    flex: 2;
+    transition: flex-grow 0.7s ease;
     grid-area: a;
     
   }
   .section-b {
+    flex: 1;
+    transition: flex-grow 0.7s ease;
+
     grid-area: b;
     position: relative;
     overflow: scroll;
-  }
-  .section-c {
-    grid-area: c;
-    padding: 0;
-    display: flex;
   }
 
   h1 { font-size: 28px; }
@@ -733,31 +759,36 @@ a {
     z-index: 7;
     display: flex;
     justify-content: flex-start;
-    padding: calc(var(--gap) / 2) var(--small-gap) calc(var(--gap) * 1.5) var(--small-gap);
-    gap: calc(var(--gap) * 2);
+    padding: calc(var(--gap) / 2) var(--small-gap) var(--small-gap) var(--small-gap);
+    gap: var(--gap);
   }
 
   .nav-1 {
-    flex: 9;
+    flex: 2;
+    position: relative;
     display: flex;
     align-items: center;
     overflow: hidden;
     height: var(--gap);
     border-radius: 50px;
+    transition: "flex-grow 0.5s ease";
   }
 
   .nav-2 {
-    flex: 16;
+    flex: 1;
+    transition: "flex-grow 0.5s ease";
   }
 
   .menu-button {
     display: flex;
     height: var(--gap);
-    width: calc(var(--gap) * 1.25);
+    width: var(--gap);
     background: var(--button-color);
     z-index: 10;
     opacity: .7;
     border-radius: 50px;
+    position: absolute;
+    right: 0;
   }
 
   .menu-button > svg {
@@ -765,18 +796,19 @@ a {
   }
   
   .menu {
-    width: 100%;
+    position: absolute;
+    width: max-content;
     height: var(--gap);
-    overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding: 0 4px;
+    justify-content: start;
+    padding: 0;
+    right: var(--gap);
     transform: translateX(100%);
     z-index: 9;
     border-radius: 50px 0 0 50px;
     background: var(--button-color);
-    gap: 0px;
+    gap: 0;
   }
 
   .icon {
@@ -790,9 +822,8 @@ a {
   .heading {
     display: block;
     position: absolute;
-    top: calc(var(--gap) / 2 + 4px);
-    left: var(--gap);
-    z-index: 7;
+    top: var(--small-gap);
+    z-index: 12;
     opacity: 1;
   }
 
@@ -816,7 +847,7 @@ a {
     margin: 0;
     overflow-y: scroll;
     scrollbar-width: none;  
-    padding-top: calc(var(--gap) * 2.8);
+    padding-top: calc(var(--gap) * 2.3);
   }
 
   #display .project {
@@ -824,11 +855,11 @@ a {
   }
 
   #display .project .thumbnail {
-    margin-bottom: 12px;
+    margin-bottom: 0px;
   }
 
   #app {
-    padding-top: calc(var(--gap) * 2.8);
+    padding-top: calc(var(--gap) * 2.3);
     margin: 0;
     overflow-y: scroll;
   }
@@ -848,10 +879,20 @@ a {
     height: 100%;
     z-index: 1000;
     opacity: .7;
+    padding: var(--small-pad);
+    border-radius: var(--radius);
+    background: rgb(36, 31, 36);
+    box-shadow: 2px 2px 12px black;
   }
 
   .info {
-    margin-bottom: var(--gap);
+   height: 100%;
+  }
+
+  .main-info {
+    border-radius: var(--radius);
+    height: 100%;
+    overflow-y: scroll;
   }
 
   .scroll-wrapper {
@@ -864,6 +905,46 @@ a {
 
   main .section-b #project-display {
     display: none;
+  }
+
+  .section-a#sidebar #display {
+    display: grid;
+  }
+
+  .two-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .one-column {
+    grid-template-columns: 1fr;
+  }
+
+  .one-column .project {
+    filter: brightness(.4);
+  }
+
+  .two-columns .project:hover {
+    .project-description {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: opacity .3s ease;
+      backdrop-filter: blur(8px);
+      background: rgba(29, 29, 29, 0.469);
+      border-radius: var(--radius);
+      padding: var(--small-pad) var(--pad);
+      height: 100%;
+      top: 0;
+      animation: fadeIn .3s ease;
+    }
+  }
+
+
+  #display .project:hover {
+    filter: brightness(0.9);
   }
 
 }
@@ -902,20 +983,20 @@ a {
   }
 
   #nav {
-    padding: calc(var(--gap) / 2) var(--gap) calc(var(--gap) * 1.5) var(--gap);
-    gap: calc(var(--gap) );
+    padding: calc(var(--gap) / 2) var(--gap)  var(--gap) var(--gap);
+    gap: var(--gap);
   }
 
   .nav-1 {
-    flex: 1;
+    flex: 2;
   }
 
   .nav-2 {
-    flex: 3;
+    flex: 1;
   }
   
   .container {
-    height: 75vh;
+    height: 80vh;
     max-height: 1000px;
     overflow-y: hidden;
   }

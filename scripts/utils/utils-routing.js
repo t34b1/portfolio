@@ -1,4 +1,4 @@
-import { animations, animate, addLazyTargetTo, delay, updateSideInfo, updateRole, toggleMode, toggleMenu} from "./utils-animations.js";
+import { animations, animate, addLazyTargetTo, delay, updateSideInfo, updateRole, toggleMode, toggleMenu, adjustLayout} from "./utils-animations.js";
 
 export const isLocal =
   location.hostname === "127.0.0.1" || location.hostname === "localhost";
@@ -194,21 +194,12 @@ const bgColors = {
   m6: "linear-gradient(#041230, black)",
 }
 
-
 export async function handleHashChange(event) {
   const path = location.hash.replace("#", "") || "/main-0";
   updateState(path);
   await load(path, app, false);
+  adjustLayout(path);
   toggleMenu();
-/*
-  for (let color in bgColors) {
-    if (path.includes(color)) {
-      console.log("changing background color");
-      document.body.style.background = bgColors[color];
-    }
-  }
-    */
-
   document.querySelector("#sidebar").scrollTo({
     top: 0,
     behavior: "smooth" 

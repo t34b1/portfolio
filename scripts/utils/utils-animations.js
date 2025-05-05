@@ -15,8 +15,8 @@ export const animations = {
 };
 
 const roles = {
-  main: `<span class = "very small" style = "opacity: .5;">Hero animation created in p5.js using generative AI procedural logic<br></span><br>
-  <span class = "very small" style = "opacity: .5;">2025</span>`,
+  main: `<span class="very small" style = "opacity: .5; margin: 0;">This single-page application was custom designed and built with love by Taylor Tran, 2025. 
+     <a href = "https://github.com/t34b1"><u>View on Github →</u></a><br></span><br>`,
   wnrs: `<span class = "label">SENIOR DIGITAL DESIGNER</span><br>
     <span class = "label">2022 - 2025</span>`,
   m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
@@ -237,8 +237,9 @@ export async function hydrate(element) {
 
   if (element.matches("DIV")) {
     //console.log("path: " + element.dataset.href);
+    const path = base + element.dataset.href;
     const page = document.createElement("div");
-    page.innerHTML = await loadPage(element.dataset.href);
+    page.innerHTML = await loadPage(path);
     page.querySelectorAll("img[data-src]").forEach(img => hydrate(img));
     element.innerHTML = "";
     element.append(page);
@@ -334,6 +335,9 @@ export async function updateSideInfo(path) {
     //console.log("infobar or info not found");
     return;
   }
+
+  console.log("updating side info with path: " + sidebarPath);
+
   if (!routes[sidebarPath]) {
     sidebarPath = "/main-info";
   }
@@ -359,5 +363,31 @@ export async function updateRole(path) {
       overlay.innerHTML = roles[role];
       overlay.classList.add("slide-down");
     }
+  }
+}
+
+export function adjustLayout(path) {
+  const navOne = document.querySelector(".nav-1");
+  const navTwo = document.querySelector(".nav-2");
+  const secA = document.querySelector(".section-a");
+  const secB = document.querySelector(".section-b");
+  const projects = document.querySelector("#display");
+  
+  if (!path.includes("/main-0")) {
+    secA.style.flexGrow = "1";
+    navOne.style.flexGrow = "1";
+    secB.style.flexGrow = "4";
+    navTwo.style.flexGrow = "4";
+    projects.classList.remove("two-columns");
+    projects.classList.add("one-column");
+  }
+
+  if (path.includes("/main-0")) {
+    secA.style.flexGrow = "2";
+    navOne.style.flexGrow = "2";
+    secB.style.flexGrow = "1";
+    navTwo.style.flexGrow = "1";
+    projects.classList.remove("one-column");
+    projects.classList.add("two-columns");
   }
 }
