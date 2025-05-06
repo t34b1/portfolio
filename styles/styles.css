@@ -744,7 +744,7 @@ main {
   h1 { font-size: 28px; }
   h2 { font-size: 26px; }
   h3 { font-size: 24px; }
-  h4 { font-size: 20px; }
+  h4 { font-size: 22px; }
   bodycopy { font-size: 20px; }
   span.small { font-size: 16px; }
   span.very.small {
@@ -1002,6 +1002,7 @@ main {
   }
 
   .container .text, .container.text {
+    min-height: 80vh;
     overflow-y: scroll;
     scrollbar-width: none;
   }
