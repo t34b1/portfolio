@@ -237,7 +237,7 @@ export async function hydrate(element) {
 
   if (element.matches("DIV")) {
     //console.log("path: " + element.dataset.href);
-    const path = base + element.dataset.href;
+    const path = element.dataset.href;
     const page = document.createElement("div");
     page.innerHTML = await loadPage(path);
     page.querySelectorAll("img[data-src]").forEach(img => hydrate(img));
