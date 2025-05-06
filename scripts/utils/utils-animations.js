@@ -17,14 +17,14 @@ export const animations = {
 const roles = {
   main: `<span class="very small" style = "opacity: .5; margin: 0;">This single-page application was custom designed and built with love by Taylor Tran, 2025. 
      <a href = "https://github.com/t34b1"><u>View on Github →</u></a><br></span><br>`,
-  wnrs: `<span class = "label">SENIOR DIGITAL DESIGNER</span><br>
-    <span class = "label">2022 - 2025</span>`,
-  m6: `<span class = "small label">SENIOR DIGITAL DESIGN MANAGER</span><br>
-  <span class = "small label">2020 - 2022</span>`,
-  misc: `<span class = "small label">DESIGNER</span><br>
-  <span class = "small label">2018 - NOW</span>`, 
-  piggy: `<span class = "small label">UX DESIGNER</span><br>
-  <span class = "small label">2024</span>`
+  wnrs: `<span class = "very small">Senior Digital Designer</span><br>
+    <span class = "very small">2022 - 2025</span>`,
+  m6: `<span class = "very small">Senior Digital Design Manager</span><br>
+  <span class = "very small">2020 - 2022</span>`,
+  misc: `<span class = "very small">Designer</span><br>
+  <span class = "very small">2018 - NOW</span>`, 
+  piggy: `<span class = "very small">UX Designer</span><br>
+  <span class = "very small">2024</span>`
 };
 
 export async function toggleMenu(event) {
