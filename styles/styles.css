@@ -893,6 +893,7 @@ main {
     border-radius: var(--radius);
     height: 100%;
     overflow-y: scroll;
+    scrollbar-width: none;
   }
 
   .scroll-wrapper {
