@@ -877,11 +877,11 @@ main {
     position: absolute;
     width:100%;
     height: 100%;
-    z-index: 1000;
-    opacity: .7;
-    padding: var(--small-pad);
+    z-index: 100;
+    opacity: .4;
+    padding: 0;
+   
     border-radius: var(--radius);
-    background: rgb(36, 31, 36);
     box-shadow: 2px 2px 12px black;
   }
 

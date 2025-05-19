@@ -8,7 +8,7 @@ let flipTimers = [];
 
 function setup() {
 
-  createCanvas(windowWidth * 1, windowHeight * 1);
+  createCanvas(windowWidth * 1.2, windowHeight * 1.2);
   textFont('monospace');
   textSize(cellSize * .8);
   textAlign(CENTER, CENTER);

@@ -383,8 +383,8 @@ export function adjustLayout(path) {
   }
 
   if (path.includes("/main-0")) {
-    secA.style.flexGrow = "2";
-    navOne.style.flexGrow = "2";
+    secA.style.flexGrow = "1";
+    navOne.style.flexGrow = "1";
     secB.style.flexGrow = "1";
     navTwo.style.flexGrow = "1";
     projects.classList.remove("one-column");
