@@ -1002,10 +1002,13 @@ main {
     overflow-y: hidden;
   }
 
-  .container .text, .container.text {
-    min-height: 80vh;
+  .text {
     overflow-y: scroll;
     scrollbar-width: none;
+  }
+
+  .container.text {
+    height: 80vh;
   }
 
   .phone-wrapper {
@@ -1013,7 +1016,6 @@ main {
     max-width: 250px;
     padding: 0px;
     max-height: 100%;
-    
   }
 
   .layout.a {
