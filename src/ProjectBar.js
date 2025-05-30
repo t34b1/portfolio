@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 function ProjectThumbnail({src}) {
 return (
-  <img src={src} className = "project-thumbnail" alt="thumbnail" />
+  <img src={`${process.env.PUBLIC_URL}/${src}`} className = "project-thumbnail" alt="thumbnail" />
 );
 }
 

@@ -11,7 +11,7 @@ import ProjectBar from './ProjectBar';
 export const thumbnails = [
   {
     path: "/",
-    src: "/assets/thumbnails/home.png",
+    src: `/assets/thumbnails/home.png`,
   },
   {
     path: "/wnrs",
@@ -154,7 +154,7 @@ const wnrsContent = [
     src: 
       <CenteredElement background="/assets/wnrs/light-bg.jpg">
         <div className="top-element half-phone">
-        <img src="/assets/wnrs/getthemback.gif" alt="email"/>
+        <img src={`${process.env.PUBLIC_URL}/assets/wnrs/getthemback.gif`} alt="email"/>
         </div>
       </CenteredElement>,
     info: `<h3>Users expect polished brand emails</h3>
@@ -196,7 +196,8 @@ const wnrsContent = [
     src: 
       <CenteredElement background="/assets/wnrs/light-bg.jpg">
         <div className="top-element">
-        <Phone src="/assets/wnrs/vday-fixed-with-audio.mp4"/>
+        <Phone src="/assets/wnrs/vday-fixed-with-audio.mp4"
+        />
         </div>
     </CenteredElement>,
     info: `<h3>Results</h3>
@@ -211,7 +212,8 @@ const wnrsContent = [
     src:  
       <CenteredElement background="/assets/wnrs/red-bg.jpg">
         <div className="top-element">
-        <Phone src="/assets/wnrs/selfreflection-fixed-with-audio.mp4"/>
+        <Phone src="/assets/wnrs/selfreflection-fixed-with-audio.mp4"
+        />
        </div>
     </CenteredElement>,
     info: `
@@ -388,7 +390,8 @@ const healthAppContent = [
     src: 
       <CenteredElement background="/assets/health-app/blue-bg.jpg">
         <div className="top-element">
-        <Phone src="/assets/health-app/dashboard-with-audio.mp4"/>
+        <Phone src="/assets/health-app/dashboard-with-audio.mp4"
+        />
         </div>
     </CenteredElement>,
     info: `<h3>Final Dashboard</h3>
@@ -479,7 +482,8 @@ const piggyContent = [
     src: 
       <CenteredElement background="/assets/piggy/light-green-bg.jpg">
         <div className="top-element">
-        <Phone src="/assets/piggy/new-group-with-audio.mp4"/>
+        <Phone src={`${process.env.PUBLIC_URL}/assets/piggy/new-group-with-audio.mp4`}
+        />
         </div>
     </CenteredElement>,
     alt: "Wireframe: creating a new group",
@@ -535,7 +539,8 @@ const piggyContent = [
     src: 
       <CenteredElement background="/assets/piggy/light-green-bg.jpg">
         <div className="top-element">
-        <Phone src="/assets/piggy/new-group-prototype-with-audio.mp4"/>
+        <Phone src={`${process.env.PUBLIC_URL}/assets/piggy/new-group-prototype-with-audio.mp4`}
+        />
         </div>
     </CenteredElement>,
     alt: "High fidelity prototype: create new group",
@@ -587,24 +592,20 @@ const homeContent = [
   {
     type: "component",
     src:
-    <Link to="/wnrs">
-    <div className="home-project">
-     <div className="thumbnail">
-    <CenteredElement background="/assets/wnrs/light-bg.jpg">
-    <div className="top-element half-phone">
-    <img src="/assets/wnrs/getthemback.gif" alt="email"/>
-    </div>
-  </CenteredElement>
-    </div>
-    
-    </div>
-    </Link> ,
+        <Link to="/wnrs">
+        <div className="home-project">
+        <div className="thumbnail">
+        <CenteredElement background="/assets/wnrs/light-bg.jpg">
+        <div className="top-element half-phone">
+        <img src={`${process.env.PUBLIC_URL}/assets/wnrs/getthemback.gif`} alt="email"/>
+        </div>
+      </CenteredElement>
+        </div>
+        </div>
+        </Link> ,
     info: `
         <h2>We're Not Really Strangers</h2>
-        <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>
-        <img className="project-thumbnail" src="/assets/thumbnails/core-hand.gif"alt="close-up of hands playing with W.N.R.S. cards"/>
-
-        `,
+        <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>`,
   },
 
   {
@@ -613,15 +614,13 @@ const homeContent = [
     <Link to="/health-app">
     <div className="home-project">
       <div className="thumbnail">
-        <img src="/assets/thumbnails/health-app-thumbnail-big.jpg"alt="close-up of hands playing with W.N.R.S. cards"/>
+        <img src={`${process.env.PUBLIC_URL}//assets/thumbnails/health-app-thumbnail-big.jpg`}alt="health app"/>
         </div>
     </div>
     </Link> ,
     info: `
     <h2>TeleHealth App Health Dashboard</h2>
     <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>
-     <img className="project-thumbnail" src="/assets/thumbnails/health.jpg"alt="close-up of hands playing with W.N.R.S. cards"/>
-
     `,
   },
 
@@ -631,15 +630,12 @@ const homeContent = [
     <Link to="/naturepass">
     <div className="home-project">
        <div className="thumbnail">
-        <img src="/assets/thumbnails/naturepass-thumbnail-big.jpg"alt="close-up of hands playing with W.N.R.S. cards"/>
+        <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/naturepass-thumbnail-big.jpg`} alt="Nature pass branding project"/>
         </div>
     </div>
     </Link> ,
     info: ` <h2>Nature Pass</h2>
-          <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>
-           <img className="project-thumbnail" src="/assets/thumbnails/5.png"alt="close-up of hands playing with W.N.R.S. cards"/>
-
-          `,
+          <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>`,
   },
   {
     type: "component",
@@ -647,14 +643,13 @@ const homeContent = [
     <Link to="/mutesix">
     <div className="home-project">
        <div className="thumbnail">
-       <img src="/assets/thumbnails/mutesix-thumbnail-big.jpg"alt="close-up of hands playing with W.N.R.S. cards"/>
+       <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/mutesix-thumbnail-big.jpg`}alt="mutesix project"/>
        </div>
     </div>
     </Link> ,
     info: `
      <h2>MuteSix</h2>
       <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>
-      <img className="project-thumbnail" src="/assets/thumbnails/2.png"alt="close-up of hands playing with W.N.R.S. cards"/>
     `,
   },
 
@@ -664,7 +659,7 @@ const homeContent = [
     <Link to="/piggy">
     <div className="home-project">
       <div className="thumbnail">
-      <img src="/assets/thumbnails/piggy-thumbnail-big.jpg"alt="close-up of hands playing with W.N.R.S. cards"/>
+      <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/piggy-thumbnail-big.jpg`} alt="piggy"/>
        </div>
 
     </div>
@@ -672,7 +667,6 @@ const homeContent = [
     info: `
      <h2>Piggy</h2>
       <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>
-      <img className="project-thumbnail" src="/assets/thumbnails/piggy-2.jpg"alt="close-up of hands playing with W.N.R.S. cards"/>
     `,
   },
 
@@ -682,7 +676,7 @@ const homeContent = [
     <Link to="/echo">
     <div className="home-project">
       <div className="thumbnail">
-      <img src="/assets/thumbnails/echo-thumbnail-big.gif"alt="close-up of hands playing with W.N.R.S. cards"/>
+      <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/echo-thumbnail-big.gif`}alt="echo"/>
        </div>
        
     </div>
@@ -690,7 +684,6 @@ const homeContent = [
     info: `
       <h2>Echo</h2>
       <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>
-      <img className="project-thumbnail" src="/assets/thumbnails/echo.gif"alt="close-up of hands playing with W.N.R.S. cards"/>
     `,
   },
 
@@ -700,15 +693,13 @@ const homeContent = [
     <Link to="/misc">
     <div className="home-project">
       <div className="thumbnail">
-      <img src="/assets/thumbnails/misc-thumbnail-big.jpg"alt="close-up of hands playing with W.N.R.S. cards"/>
+      <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/misc-thumbnail-big.jpg`}alt="misc"/>
        </div>
     </div>
     </Link> ,
     info: `
      <h2>Misc</h2>
      <p>Designed brand-led digital experiences that helped people discover and love the products</p><br>
-     <img className="project-thumbnail" src="/assets/thumbnails/misc-cover.jpeg"alt="close-up of hands playing with W.N.R.S. cards"/>
-
     `,
   },
  
@@ -784,10 +775,18 @@ function ImageGrid({content}) {
   return (
     <div className="brand-grid">
     {content.map((image, index) => (
-      <img src={image} alt="placeholder" key={index}/>
+      <img src={`${process.env.PUBLIC_URL}/${image}`} alt="placeholder" key={index}/>
     ))}
     </div>
   );
+}
+
+const icons ={
+  arena: "/assets/nav/arena.png",
+  linkedin: "/assets/nav/linkedin.png",
+  ig: "/assets/nav/ig.png",
+  github: "/assets/nav/github.png",
+  mail: "/assets/nav/mail.png",
 }
 
 function Sidebar() {
@@ -798,15 +797,15 @@ function Sidebar() {
     </div>
   
   <div className="nav-links">
-        <Link to="https://www.are.na/taylor-tran/"><img className="icon" src="/assets/nav/arena.png"alt="close-up of hands playing with W.N.R.S. cards"/>
+        <Link to="https://www.are.na/taylor-tran/"><img className="icon" src={`${process.env.PUBLIC_URL}/${icons.arena}`} alt="link to Are.na"/>
         </Link>
-        <Link to="https://www.linkedin.com/in/taylor-tran/"><img className="icon "src="/assets/nav/linkedin.png"alt="close-up of hands playing with W.N.R.S. cards"/>
+        <Link to="https://www.linkedin.com/in/taylor-tran/"><img className="icon "src={`${process.env.PUBLIC_URL}/${icons.linkedin}`} alt="Link to Linkedin"/>
         </Link>
-        <Link to="https://www.instagram.com/teapi/"><img className="icon "src="/assets/nav/ig.png"alt="close-up of hands playing with W.N.R.S. cards"/>
+        <Link to="https://www.instagram.com/teapi/"><img className="icon "src={`${process.env.PUBLIC_URL}/${icons.ig}`}alt="Link to instagram"/>
         </Link>
-        <Link to="https://github.com/t34b1"><img className="icon "src="/assets/nav/github.png"alt="close-up of hands playing with W.N.R.S. cards"/>
+        <Link to="https://github.com/t34b1"><img className="icon "src={`${process.env.PUBLIC_URL}/${icons.github}`}alt="Link to github"/>
         </Link>
-        <Link to="mailto:trantaylorm@gmail.com"><img className="icon "src="/assets/nav/mail.png"alt="close-up of hands playing with W.N.R.S. cards"/>
+        <Link to="mailto:trantaylorm@gmail.com"><img className="icon "src={`${process.env.PUBLIC_URL}/${icons.mail}`}alt="Link to email"/>
         </Link>
   </div>
   <div><p>Site design and build by Taylor Tran, 2025. Built with React.</p>
@@ -823,7 +822,7 @@ function Slide({type, src, alt}) {
     return (
       <div className = "slide">
           <img 
-          src={src} 
+          src={`${process.env.PUBLIC_URL}/${src}`}
           alt ={alt ? alt : "design by Taylor Tran"}
           />
         </div>
@@ -861,13 +860,17 @@ function Section({visual, text}) {
     if (!textEl) return;
 
     if (inView) {
-      textEl.classList.remove("hidden");
+      textEl.classList.remove("hidden");      
+      const link = visual.props.src.props.to;
+     
     }
 
     else {
       textEl.classList.add("hidden");
     }
   }, [inView]);
+
+
 
   return (
     <div className = "section" ref={setRefs}>
@@ -885,7 +888,7 @@ function Section({visual, text}) {
 function CenteredElement({background, children}) {
   return (
   <>
-    <img src={background} alt="background" className="bg-image"/>
+    <img src={`${process.env.PUBLIC_URL}/${background}`} alt="background" className="bg-image"/>
     {children}
   </>);
 }
@@ -916,7 +919,7 @@ function Home() {
     <Section 
               visual={<Slide type="component" src={
                 <div className="home-project">
-                <img src="/assets/thumbnails/banana.png"alt="close-up of hands playing with W.N.R.S. cards"/>
+                <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/banana.png`} alt="banana illustration"/>
                </div>
               } /> } 
               text={<ContentBlock content={
@@ -1009,16 +1012,13 @@ function Video({src}) {
       });
     };
 
-    // Try to play initially
     play();
 
-    // Force loop manually
     video.addEventListener("ended", () => {
       video.currentTime = 0;
       video.play();
     });
 
-    // Retry on scroll/click
     const retry = () => {
       play();
       window.removeEventListener("scroll", retry);
@@ -1037,7 +1037,7 @@ function Video({src}) {
   return (
     <video
       ref={videoRef}
-      src={src}
+      src={`${process.env.PUBLIC_URL}/${src}`}
       muted
       autoPlay
       playsInline
@@ -1050,7 +1050,7 @@ function Phone({src}) {
   return (
     <div className="phone-wrapper">
       <div className="frame">
-        <img src="/assets/frame.png" alt="phone frame"/>
+        <img src={`${process.env.PUBLIC_URL}/assets/frame.png`} alt="phone frame"/>
       </div>
       <div className="screen">
       <Video src={src}/>
@@ -1075,12 +1075,12 @@ function Project({content, className}) {
 }
 
 function App() {
+  const [current, setCurrent] = useState(null);
+  console.log(current);
 
   return (
     <>
-  
    <ScrollToTop/>
-
     <ProjectBar />
     <Routes>
       <Route path="/" element={<Page content={<Home />} />}/>
