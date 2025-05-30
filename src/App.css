@@ -1,38 +1,285 @@
+
 .App {
-  text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes moveIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes floatUp {
   from {
-    transform: rotate(0deg);
+    transform: translateY(0px);
   }
   to {
-    transform: rotate(360deg);
+    transform: translateY(-.5px);
   }
+}
+@keyframes floatDown {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(.5px);
+  }
+}
+
+.float-up {
+  animation: floatUp 1s ease-in-out infinite alternate;
+  display: inline-block;
+}
+
+.float-down {
+  animation: floatDown 1s ease-in-out infinite alternate;
+  display: inline-block;
+}
+
+
+.page {
+  flex: 15;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  animation: moveIn .3s ease;
+  position: relative;
+}
+
+.project-page {
+  overflow-y: scroll;
+  border-top: 1px solid black;
+
+}
+
+.sidebar {
+  position: fixed;
+  width: 22%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 16px 96px 16px 0px;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.sidebar > :nth-child(1) {
+  flex-grow: 1; 
+}
+
+
+.nav-links {
+  display: flex;
+  flex-shrink: 0;
+  flex-grow: 0; 
+  width: 100%;
+  height: auto;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  
+}
+
+.icon {
+  flex: 1 1 0;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+ }
+
+.project-bar {
+  flex: 1;
+  left: 0;
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.project-thumbnail {
+  width: 100%;
+  margin-bottom: 16px;
+  max-width: 150px;
+  border-radius: 8px;
+
+}
+
+.section {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+}
+
+.section > :nth-child(1) {
+  flex: 12;
+ }
+
+ .section > :nth-child(2) {
+  flex: 3;
+ }
+
+.section .text {
+  transition: opacity 0.5s ease;
+  padding-top: 32px;
+}
+
+
+.slide {
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.collapsed {
+ display: none;
+}
+
+
+.centered-element {
+  position: relative;
+  width: 100%;
+  height: 100%; 
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  z-index: -1;  
+}
+
+.top-element {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 32px;
+  z-index: 1;
+}
+
+.half-phone {
+  padding: 32px 32px 0 32px;
+}
+
+.top-element > img,
+.top-element > video {
+  height: 100%;
+  object-fit: contain;
+
+}
+
+.phone-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame {
+  height: 100%;
+  padding: 32px;
+  position: absolute;
+}
+
+.frame > img  {
+  height: 100%;
+  object-fit: contain;
+}
+
+.screen {
+  height: 100%;
+  width: max-content;
+  padding: 10px;
+  border-radius: 70px;
+  overflow: hidden;
+}
+
+.screen > * {
+  height: 100%;
+  object-fit: contain;
+}
+
+.half-phone {
+  border-radius: 100px 100px 0 0;
+  overflow: hidden;
+}
+
+.brand-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+  overflow: hidden;
+}
+
+.brand-grid img {
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  box-shadow: 2px 4px 12px  rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.thumbnail  * {
+  width: 100%;
+}
+
+.home {
+  border: none;
+}
+
+.home-project {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.home-project > :nth-child(1) {
+ flex: 2;
+}
+.home-project > :nth-child(2) {
+  flex: 1;
+ }
+ 
+
+ a {
+  color: black;
+  text-decoration: none;
+ }
+
+ul {
+  padding-left: 32px;
+}
+
+li {
+  padding: 8px 0;
+}
+
+.role-overlay {
+  position: sticky;
+  left: 16%;
+  top: 0px;
+  margin-bottom: 32px;
+  z-index: 9;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 500;
 }
