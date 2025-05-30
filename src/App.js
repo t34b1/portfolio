@@ -1078,7 +1078,7 @@ function App() {
 
   return (
     <>
-   <Router>
+  
    <ScrollToTop/>
 
     <ProjectBar />
@@ -1099,7 +1099,7 @@ function App() {
       
     </Routes>
     <Sidebar />
-  </Router>
+
   
    
    </> 
