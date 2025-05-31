@@ -343,10 +343,10 @@
   }
   */
 
-  .page {
+  .project-page {
     scrollbar-width: none;
+
   }
-  
   .role-overlay {
     position: sticky;
   }
