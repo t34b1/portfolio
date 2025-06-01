@@ -60,7 +60,7 @@ export const pages = {
     content: miscContent,
     path: ROUTES.misc,
     role: ["D","e","s","i","g","n","e","r"],
-    year: ["2","0","2","8"," ","-"," ","N","o","w"],
+    year: ["2","0","1","8"," ","-"," ","N","o","w"],
   },
 
   echo: {
@@ -68,6 +68,6 @@ export const pages = {
     content: echoContent,
     path: ROUTES.echo,
     role: ["D","e","s","i","g","n","e","r", " ","&"," ","D","e","v","e","l","o","p","e","r"],
-    year: ["2","0","2","8"," ","-"," ","N","o","w"],
+    year: ["2","0","2","5"],
   },
 };

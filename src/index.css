@@ -14,12 +14,7 @@ html, body {
 
 body {
   display: flex;
-  justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  justify-content: flex-start;
   font-family: "neue-haas-unica", sans-serif;
   font-size: 14px;
   
@@ -41,7 +36,7 @@ ul {
 }
 
 li {
-  padding: 8px 0;
+  padding: 4px 0;
 }
 
 #root {
@@ -83,6 +78,10 @@ h3 {
   margin-bottom: 1em;
 }
 
+span.small {
+  font-size: 14px;
+}
+
 @media (min-width: 481px) {
 }
 
@@ -93,13 +92,10 @@ h3 {
 
 @media (min-width: 1025px) {
   #root {
-    width: 87%;
+    width: 94%;
     padding: 32px 16px 0px 16px;
   }
-  p {
-    font-size: 14px;
-  }
-  
+
   h1 {
     font-size: 32px;
     line-height: 1.3em;
@@ -110,9 +106,15 @@ h3 {
     line-height: 1.3em;
   }
   
-  
   h3 {
     font-size: 16px;
   }
 
+  p {
+    font-size: 14px;
+  }
+
+  span.small {
+    font-size: 14px;
+  }
 }

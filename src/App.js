@@ -13,10 +13,8 @@ function App() {
   return (
     <>
    <ScrollToTop/>
-    <ProjectBar activeSection={activeSection} thumbnails={thumbnails} className="desktop"/>
-    <div className="mobile-menu">
-    <Link to="/projectBar"><h3>Menu</h3></Link>
-    </div>
+   <ProjectBar activeSection={activeSection} thumbnails={thumbnails} className="desktop"/>
+   <ProjectBar activeSection={activeSection} thumbnails={thumbnails} className="mobile-menu"/>
    
   
     <Routes>
@@ -59,7 +57,7 @@ function ScrollToTop() {
 }
 
 export function ContentBlock({ content }) {
-  return <div className="content">{parse(content)}</div>;
+  return <div className={`content`}>{parse(content)}</div>;
 }
 
 export function ImageGrid({content}) {
@@ -90,7 +88,7 @@ function Sidebar() {
         <Link to="mailto:trantaylorm@gmail.com"><img className="icon "src={`${process.env.PUBLIC_URL}/${icons.mail}`}alt="Link to email"/>
         </Link>
   </div>
-  <div><p>Site design and build by Taylor Tran, 2025. Built with React.</p>
+  <div><span className="small">Site design and build by Taylor Tran, 2025. Built with React.</span>
   </div>
   </div>
 }
@@ -142,7 +140,8 @@ export function Section({path, visual, text, onInView}) {
     if (!textEl) return;
 
     if (inView) {
-      textEl.classList.remove("hidden");   
+      textEl.classList.remove("hidden");  
+     
       if (path && typeof onInView === "function") {
         onInView(path); 
       }
@@ -197,7 +196,7 @@ function Home({setActiveSection}) {
     <>
     <Section 
               visual={<Slide type="component" src={
-                <div className="home-project">
+                <div className="home-project" >
                 <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/banana.png`} alt="banana illustration"/>
                </div>
               } /> } 
@@ -211,6 +210,7 @@ function Home({setActiveSection}) {
                   `
               }/>}
               onInView={setActiveSection}
+              path="/hero"
               />
 
 

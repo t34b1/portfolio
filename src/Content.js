@@ -62,6 +62,7 @@ export const naturePassContent = [
     info: `<p>Naturepass is a social app for people who love the outdoors.</p>
     <p>Users can share photos, leave trail notes and reviews, and connect with others who care about nature in the same way.</p>
     <p>The wordmark uses rounded, organic shapes and balanced spacing to feel natural, friendly, and versatile.</p>`,
+    path: ROUTES.naturePass,
   },
   {
     type: "img",
@@ -103,11 +104,12 @@ export const naturePassContent = [
 ];
 
 export const wnrsBrandGrid = [
-  "/assets/wnrs/brand-grid/self-love-ad.gif",
-  "/assets/wnrs/brand-grid/sale.gif",
-  "/assets/wnrs/brand-grid/core-hand.gif",
-  "/assets/wnrs/brand-grid/happy-we-met.gif",
   "/assets/wnrs/brand-grid/couples-cropped.gif",
+  
+  "/assets/wnrs/brand-grid/sale.gif",
+  "/assets/wnrs/brand-grid/happy-we-met.gif",
+  "/assets/wnrs/brand-grid/core-hand.gif",
+  "/assets/wnrs/brand-grid/self-love-ad.gif",
   "/assets/wnrs/brand-grid/cards.gif",
   "/assets/wnrs/brand-grid/V2_1.gif",
   "/assets/wnrs/brand-grid/clock.jpg",
@@ -126,6 +128,7 @@ export const wnrsContent = [
     type: "img",
     src: "/assets/wnrs/slide-1.jpg",
     info: `<p>We’re Not Really Strangers is a card game designed to create meaningful connections.</p>`,
+    path: ROUTES.wnrs,
   },
   {
     type: "img",
@@ -182,14 +185,11 @@ export const wnrsContent = [
     type: "img",
     src: "/assets/wnrs/journey.jpg",
     info: `<h3>The full journey</h3>
-    <p>While this was a marketing channel, we treated each email like a micro-product with a clear 
-    moment, goal, and designed experience. Our job was to create something people wanted to open, 
+    <p>While this was a marketing channel, we treated each email like a micro-product with a goal
+    and designed experience. Our job was to create something people wanted to open, 
     understand, and feel.</p>
-    <p>We asked:</p>
-    <p>"What emotional need are we addressing?"</p>
-    <p>"What story will make the user feel seen and leads naturally into the product?"</p>
-    <p>"How does the visual format support that message?"</p>
-    <p>We tracked clicks—but more importantly, we tracked who stayed and who converted. We wanted real 
+    <p>What story can we tell that will make the user feel seen and lead naturally into product? How does the visual format support that message?</p>
+    <p>We tracked clicks, but more importantly, we tracked who stayed and who converted. We wanted real 
     engagement and connection, not just novelty. </p>`,
   },
 
@@ -203,8 +203,8 @@ export const wnrsContent = [
         </div>
     </CenteredElement>,
     info: `<h3>Results</h3>
-    <p>The results were simple and fun experiences that rewarded interaction, and made the brand memorable.</p>
-    <p>This email brought in 9K new signups.</p>
+    <p>The results were simple, fun experiences that rewarded interaction and made the brand memorable.</p>
+    <p>This Valentine's Day campaign brought in 9K new signups.</p>
     <p>Over 3 years, our email list grew to 900,000+ organic subscribers.</p>
     `,
   },
@@ -228,7 +228,8 @@ export const wnrsContent = [
   {
     type: "img",
     src: "/assets/wnrs/slide-5.jpg",
-    info: `<p>It was rewarding to build something people responded to.`,
+    info: `<h3>Feedback</h3>
+    <p>It was rewarding to build something people responded to and resonated with.`,
   },
 
 ];
@@ -238,9 +239,10 @@ export const m6Content = [
   {
     type: "img",
     src: "/assets/mutesix/slide-1.jpg",
-    info: `<p>I joined MuteSix as a Marketing Designer and eventually led the design team, 
-    focused on producing high-volume B2B marketing work.</h3>
+    info: `<p>I joined MuteSix as a Marketing Designer and eventually led the team, 
+    focused on producing high-volume B2B assets.</h3>
     <p>Early on, I contributed to a brand refresh that included updating our color palette.</p>`,
+    path: ROUTES.m6,
   },
   {
     type: "img",
@@ -273,7 +275,9 @@ export const miscContent = [
   {
     type: "img",
     src: "/assets/misc/slide-1.jpg",
+    path: ROUTES.misc,
     info: ``,
+   
   },
   {
     type: "img",
@@ -294,6 +298,7 @@ export const echoContent = [
     src: `<br>
     <h1>Under Construction</h1>`,
     info: ``,
+    route: ROUTES.echo,
   },
 
 ];
@@ -304,15 +309,16 @@ export const healthAppContent = [
     src: "/assets/health-app/slide-1.jpg",
     alt: "Onboarding flow for a health app thay shows screens titled: progress tracker, habit builder, milestones, and start your journey",
     info: `
-    <p>I designed a health dashboard for a telehealth company focused on weight loss.<p>
+    <p>I designed a health dashboard for a telehealth startup focused on weight loss.<p>
     <p>This concept explores the onboarding flow and key features that support habit-building and ongoing progress.</p>
-    <p>These features help users stay consistent, because that’s where most weight loss efforts fall off.</p>`,
+    <p>It’s built to help users stay consistent, the biggest challenge in most weight loss journeys.</p>`,
+    path: ROUTES.healthApp,
   },
   {
     type: "img",
     src: "/assets/health-app/slide-2A.jpg",
     alt: "Persona of a woman who wants to lose weight named Joanna",
-    info:`<h3>Meet Joanna</h3>
+    info:`<h3>Meet Joanna, 32</h3>
     <p>She’s driven by love, strength, and the hope for lasting change.</p>
     `,
   },
@@ -322,7 +328,7 @@ export const healthAppContent = [
     alt: "Problem statement describing Joanna's motivations and frustrations",
     info: `
     <h3>The Problem</h3>
-    <p>Joanna wants to feel better in her body, but past failures and a busy life make it hard to stay motivated.</p>`,
+    <p>Joanna wants to feel better in her body. But past failures and a busy life make it hard to stay consistent.</p>`,
   },
   {
     type: "img",
@@ -330,7 +336,7 @@ export const healthAppContent = [
     src: "/assets/health-app/slide-2C.jpg",
     info: `
     <h3>The Solution</h3>
-    <p>This design builds trust by feeling gentle, and hopeful, helping users feel safe to try again.</p>`,
+    <p>This design builds trust by feeling gentle and hopeful, helping users feel safe to try again.</p>`,
   },
   {
     type: "img",
@@ -353,18 +359,16 @@ export const healthAppContent = [
     src: "/assets/health-app/slide-3.jpg",
     alt: "Competitor health and fitness app features",
     info: `<h3>Competitor Landscape</h3>
-    <p>I studied health and fitness apps to see what drives engagement and where there’s room to improve.
+    <p>I looked at health and fitness apps to understand what keeps users engaged and where they fall short.</p>
     <p>Hers feels playful, Nike gamifies progress well, and most use timelines, graphs, 
-    and streaks. But many apps felt cluttered or visually overwhelming, especially for women.</p>
+    and streaks. But many apps felt cluttered or visually unappealing, especially for women.</p>
     `,
   },
   {
     type: "img",
     src: "/assets/health-app/slide-4.jpg",
     alt: "Current competitior solutions and alternatives",
-    info: `<p>I took screenshots from existing apps and explored alternative solutions that might feel more intuitive.</p>
-    <p>Swapping sliders for checkmarks to mimic the satisfaction of checking off a to-do list, adding sound to create a rewarding feeling, and 
-    using more white space and larger graphs to make key information easier to scan and understand.</p>`,
+    info: `<p>I collected screenshots from various apps and highlighted where some handled key features better than others.</p>`,
     
   },
   {
@@ -385,20 +389,20 @@ export const healthAppContent = [
   },
   {
     type: "img",
-    src: "/assets/health-app/slide-7.jpg",
-    alt: "Dashboard feature wireframes",
-    info: `<h3>Dashboard Features</h3>
-    <p>I focused on features that reinforce small wins, like habit tracking and streaks, to help users build momentum over time.</p>
-    `,
-  },
-  {
-    type: "img",
     src: "/assets/health-app/slide-8.jpg",
     alt: "Wireframes of onboarding flow",
     info: `<h3>Onboarding Wireframes</h3>
     <p>I began wireframing with the onboarding flow to set a clear narrative for the user and lay the groundwork for the dashboard experience.</p>
-    <p>I focused on creating clean, clear layouts with strong visual hierarchy. I wanted the experience to feel engaging and visual, something users 
-    would enjoy coming back to. My goal was to design a space that feels exciting, not overwhelming.</p>`,
+    <p>I wanted the experience to feel engaging and visual, something users would enjoy coming back to. My goal was to design a 
+    space that feels exciting and motivating, not overwhelming.</p>`,
+  },
+  {
+    type: "img",
+    src: "/assets/health-app/slide-7.jpg",
+    alt: "Dashboard feature wireframes",
+    info: `<h3>Dashboard Wireframes</h3>
+    <p>I brainstormed features that reinforce small wins, like habit tracking and streaks, to help users build momentum over time.</p>
+    `,
   },
   {
     type: "img",
@@ -406,14 +410,13 @@ export const healthAppContent = [
     alt: "Dashboard features before and after refinement",
     info: `<h3>Feature Refinement</h3>
     <p>I refined each feature to help users focus on their progress, not how far they still have to go.</p>
-    <p>Cards now show trends, streaks, and progress adding up in a way that feels encouraging and easy to understand. </p>
-    <p>I also introduced consistent patterns and deeper views to gently guide the experience.</p>`,
+    <p>Each feature shows progress building up over time through trends, streaks, stacked bars and growing rings.</p>`,
   },
   {
     type: "img",
     src: "/assets/health-app/slide-10.jpg",
     info: `<h3>Final Onboarding Flow</h3>
-    <p>I applied brand colors, added progress indicators, and refined the layout to create a more engaging experience.</p>
+    <p>I applied brand colors, added progress indicators, and refined the layout to help users feel excited and ready to begin their journey.</p>
     `,
   },
   {
@@ -437,27 +440,25 @@ export const piggyContent = [
     type: "img",
     src: "/assets/piggy/slide-1.jpg",
     alt: "Preface for case study",
-    info: `<h3>Key Focuses</h3>
-    <ul>
-    <li>Conducting user research, usability testing</li>
-    <li>Mapping information architecture and user flows</li>
-    <li>Applying component-driven design to support scalable, modular systems</li>
-    <li>Building a reusable component library</li>
-    </ul>`,
+    info: `<h3>Preface</h3>
+    <p>I completed this project to help me practice translating user needs into product design while sharpening my technical workflow. </p>
+    <p>Having a graphic design background, I also learned to balance visual clarity with functional hierarchy, especially when designing for 
+    groups with different needs.</p>
+    <p>I later redesigned the UI with the lessons I learned in mind.</p>`,
+    path: ROUTES.piggy,
   },
   {
     type: "img",
     src: "/assets/piggy/slide-2.jpg",
     alt: "Case study problem",
-    info: `<h3>The Problem</h3>
-    `,
+    info: ``,
   },
  
   {
     type: "img",
     src: "/assets/piggy/slide-3.jpg",
     alt: "Understanding the user",
-    info: `<h3>User Research</h3>`,
+    info: ``,
   },
   {
     type: "img",
@@ -487,7 +488,7 @@ export const piggyContent = [
     alt: "Persona: Natalie",
     info: `<h3>Meet Natalie, 35</h3>
     <p>Natalie is a health administrator in LA who lives with her fiancé and pets, and tracks their budget to stay on top of 
-    spending while saving for a home.</p>
+    spending while they save for a home.</p>
     `,
   },
   {
@@ -505,7 +506,7 @@ export const piggyContent = [
     alt: "Information Architecture",
     info: `<h3>Information Architecture</h3>
     <p>I designed the group flow to support flexible dynamics by including features like shared expense management and polls.</p>
-    <p>The goal was to keep the flow clear and easy to navigate.</p>`,
+    <p>The goal was to create a clear, easy flow that reduces financial tension in group settings.</p>`,
   },
 
   {
@@ -528,14 +529,15 @@ export const piggyContent = [
     src: "/assets/piggy/slide-7A.jpg",
     alt: "Wireframe: Anonymous poll",
     info: `<h3>Wireframe: Create Poll</h3>
-    <p>In the poll flow, users can vote anonymously to reduce tension around conflicting preferences.</p>`,
+    <p>In the poll flow, users can share preferences to build consensus and keep group dynamics positive.</p>`,
   },
 
   {
     type: "img",
     src: "/assets/piggy/slide-8.jpg",
     alt: "Usability study key findings",
-    info: `<p>I ran an unmoderated usability test to see how easily users could create a group.</p>
+    info: `<h3>Usability Study</h3>
+    <p>I ran an unmoderated usability test to see how easily users could create a group.</p>
     <p>The feedback showed confusion in the flow and form length. Based on these findings, I focused on making the setup process more guided and flexible.</p>
     
     `,
@@ -546,7 +548,7 @@ export const piggyContent = [
     alt: "Group flow revision",
     info: `
     <h3>Refining Group Flow</h3>
-    <p>I split the form into steps, added progress indicators, and gave users feedback to make setup feel easier and more engaging.</p>
+    <p>I split the form into steps, added progress indicators, and used visual feedback to make setup feel easier and more intuitive.</p>
     `,
   },
   {
@@ -578,7 +580,6 @@ export const piggyContent = [
     info: `<h3>High Fidelity Prototype</h3>
     <p>The group creation flow guides users through small, clear steps and offers flexible ways to split costs. It helps ease users into 
     group budgeting and makes collaboration feel simple.</p>
-     <p>Ashley is able to create a new group for each trip she goes on.</p>
     `,
   },
   {
@@ -591,7 +592,7 @@ export const piggyContent = [
     </CenteredElement>,
     alt: "High fidelity prototype: create a poll",
     info: `<h3>High Fidelity Prototype</h3>
-    <p>The poll flow lets users create anonymous polls to help groups align on spending decisions and avoid tension.</p>
+    <p>The poll flow helps groups align on spending decisions by making preferences visible without friction.</p>
     `,
   },
 
@@ -606,7 +607,7 @@ export const piggyContent = [
     src: "/assets/piggy/slide-13.jpg",
     alt: "Revised UI",
     info: `<p>The updated UI improves clarity and usability through better hierarchy, larger touch targets, consistent 
-    layout structure, and clearer button labels.</p>
+    layout structure, and clearer calls to action.</p>
    `,
   },
   
@@ -618,6 +619,7 @@ export const homeContent = [
     type: "text",
     src: "<h1>Work</h1>",
     info:"",
+
   },
 
   {
