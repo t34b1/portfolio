@@ -41,7 +41,7 @@ export const thumbnails = [
     path: ROUTES.motion,
     src: "/assets/thumbnails/motion.jpg",
   },
-  
+
   {
     path: ROUTES.piggy,
     src: "/assets/thumbnails/piggy-2.jpg",
@@ -114,7 +114,7 @@ export const motionContent = [
     />
    </div>
 </CenteredElement>,
-    info: `<p>This series is a collection of motion experiments created to explore animation techniques and visual rhythm.</p>`,
+    info: `<p>This series is a collection of motion experiments.</p>`,
     path: ROUTES.motion,
   },
  
