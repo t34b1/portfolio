@@ -335,6 +335,22 @@
     border-radius: 36px;
   }
   
+  .top-element.stack  {
+    display: flex;
+    transform: translate(0, -50%);
+    top: 50%;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    max-height: 450px;
+  }
+
+  .top-element.stack > video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    display: block;
+  }
 }
 
 @media (min-width: 769px) {

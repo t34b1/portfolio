@@ -1,5 +1,5 @@
 import React from 'react';
-import { homeContent, naturePassContent, wnrsContent, m6Content, healthAppContent, piggyContent, miscContent, echoContent} from "./Content.js";
+import { homeContent, naturePassContent, wnrsContent, m6Content, healthAppContent, piggyContent, miscContent, echoContent, motionContent} from "./Content.js";
 import { ROUTES } from "./ROUTES";
 
 export const pages = {
@@ -68,6 +68,13 @@ export const pages = {
     content: echoContent,
     path: ROUTES.echo,
     role: ["D","e","s","i","g","n","e","r", " ","&"," ","D","e","v","e","l","o","p","e","r"],
+    year: ["2","0","2","5"],
+  },
+  motion: {
+    info: "motion",
+    content: motionContent,
+    path: ROUTES.motion,
+    role: ["D","e","s","i","g","n","e","r"],
     year: ["2","0","2","5"],
   },
 };

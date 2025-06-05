@@ -38,14 +38,16 @@ export const thumbnails = [
   },
 
   {
+    path: ROUTES.motion,
+    src: "/assets/thumbnails/motion.jpg",
+  },
+  
+  {
     path: ROUTES.piggy,
     src: "/assets/thumbnails/piggy-2.jpg",
   },
 
-  {
-    path: ROUTES.echo,
-    src: "/assets/thumbnails/echo.gif",
-  },
+  
 
   {
     path: ROUTES.misc,
@@ -100,6 +102,43 @@ export const naturePassContent = [
     info: "",
     alt: "Presentation mockups",
 
+  },
+];
+
+export const motionContent = [
+  {
+    type: "component",
+    src: <CenteredElement background="/assets/wnrs/light-bg.jpg">
+    <div className="top-element">
+    <Video src="/assets/motion/banner-audio.mp4"
+    />
+   </div>
+</CenteredElement>,
+    info: `<p>This series is a collection of motion experiments created to explore animation techniques and visual rhythm.</p>`,
+    path: ROUTES.motion,
+  },
+ 
+  {
+    type: "component",
+    src: <CenteredElement background="/assets/wnrs/light-bg.jpg">
+    <div className="top-element stack">
+    <Video src="/assets/motion/title-audio.mp4"
+    />
+    <Video src="/assets/motion/changing-colors-audio.mp4"
+    />
+   </div>
+</CenteredElement>,
+    info: ``,
+  },
+  {
+    type: "component",
+    src: <CenteredElement background="/assets/wnrs/light-bg.jpg">
+    <div className="top-element">
+    <Video src="/assets/motion/full-audio.mp4"
+    />
+   </div>
+</CenteredElement>,
+    info: ``,
   },
 ];
 
@@ -694,6 +733,22 @@ export const homeContent = [
 
   {
     type: "component",
+    path: ROUTES.motion || null,
+    src:
+    <Link to={ROUTES.motion}>
+    <div className="home-project">
+      <div className="big-thumbnail">
+      <Video src="/assets/motion/banner-audio.mp4"/>
+       </div>
+    </div>
+    </Link> ,
+    info: `
+     <h2>Motion Studies</h2>
+     <p>A collection of motion experiments</p><br>
+    `,
+  },
+  {
+    type: "component",
     path: ROUTES.piggy || null,
     src:
     <Link to={ROUTES.piggy}>
@@ -744,6 +799,8 @@ export const homeContent = [
      <p>Select freelance, studies, and experiments</p><br>
     `,
   },
+
+  
  
 ];
 

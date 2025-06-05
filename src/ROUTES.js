@@ -9,5 +9,6 @@ export const ROUTES = {
     piggy: "/piggy",
     echo: "/echo",
     misc: "/misc",
+    motion: "/motion",
     projectBar: "/projectBar"
 };

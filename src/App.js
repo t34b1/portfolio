@@ -34,6 +34,8 @@ function App() {
         <Page content={<Project content={pages.misc.content} setActiveSection={setActiveSection} /> } />} />
         <Route path={pages.echo.path} element={
         <Page content={<Project content={pages.echo.content} setActiveSection={setActiveSection} /> } />} />
+        <Route path={pages.motion.path} element={
+        <Page content={<Project content={pages.motion.content} setActiveSection={setActiveSection} /> } />} />
          <Route path={pages.projectBar.path} element={
            <ProjectBar activeSection={activeSection} thumbnails={thumbnails} className="mobile"/> } />
 
