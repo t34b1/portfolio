@@ -27,10 +27,6 @@ export const thumbnails = [
     src: "/assets/thumbnails/health.jpg",
   },
 
-  {
-    path: ROUTES.naturePass,
-    src: "/assets/thumbnails/5.png",
-  },
 
   {
     path: ROUTES.m6,
@@ -40,6 +36,11 @@ export const thumbnails = [
   {
     path: ROUTES.motion,
     src: "/assets/thumbnails/motion.jpg",
+  },
+
+  {
+    path: ROUTES.naturePass,
+    src: "/assets/thumbnails/5.png",
   },
 
   {
@@ -701,21 +702,6 @@ export const homeContent = [
 
   {
     type: "component",
-    path: ROUTES.naturePass || null,
-    src:
-    <Link to={ROUTES.naturePass}>
-    <div className="home-project">
-       <div className="big-thumbnail">
-        <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/naturepass-thumbnail-big.jpg`} alt="Nature pass branding project"/>
-        </div>
-    </div>
-    </Link> ,
-    info: ` <h2>Nature Pass</h2>
-<p>Created a brand identity for a social app for people who love the outdoors</p><br>`,
-  },
-
-  {
-    type: "component",
     path: ROUTES.m6 || null,
     src:
     <Link to={ROUTES.m6}>
@@ -746,6 +732,21 @@ export const homeContent = [
      <h2>Motion Studies</h2>
      <p>A collection of motion experiments</p><br>
     `,
+  },
+
+  {
+    type: "component",
+    path: ROUTES.naturePass || null,
+    src:
+    <Link to={ROUTES.naturePass}>
+    <div className="home-project">
+       <div className="big-thumbnail">
+        <img src={`${process.env.PUBLIC_URL}/assets/thumbnails/naturepass-thumbnail-big.jpg`} alt="Nature pass branding project"/>
+        </div>
+    </div>
+    </Link> ,
+    info: ` <h2>Nature Pass</h2>
+<p>Created a brand identity for a social app for people who love the outdoors</p><br>`,
   },
   {
     type: "component",
