@@ -295,6 +295,11 @@ export const m6Content = [
     src: "/assets/mutesix/slide-4.jpg",
     info: ``,
   },
+  {
+    type: "img",
+    src: "/assets/mutesix/slide-4A.jpg",
+    info: ``,
+  },
 
   {
     type: "img",
