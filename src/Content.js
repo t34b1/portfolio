@@ -284,16 +284,11 @@ export const m6Content = [
     <p>Early on, I contributed to a brand refresh that included updating our color palette.</p>`,
     path: ROUTES.m6,
   },
-  {
-    type: "img",
-    src: "/assets/mutesix/slide-3.jpg",
-    info: `We designed assets for everything from social and web to events and sales decks.`,
-  },
  
   {
     type: "img",
     src: "/assets/mutesix/slide-4.jpg",
-    info: ``,
+    info: `We designed assets for everything from social and web to events and sales decks.`,
   },
   {
     type: "img",
