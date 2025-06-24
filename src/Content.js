@@ -287,28 +287,27 @@ export const m6Content = [
  
   {
     type: "img",
-    src: "/assets/mutesix/slide-4.jpg",
+    src: "/assets/mutesix/slide-3.jpg",
     info: `We designed assets for everything from social and web to events and sales decks.`,
   },
+
+  {
+    type: "img",
+    src: "/assets/mutesix/slide-4.jpg",
+    info: ``,
+  },
+  {
+    type: "img",
+    src: "/assets/mutesix/slide-4B.jpg",
+    info: ``,
+  },
+ 
   {
     type: "img",
     src: "/assets/mutesix/slide-4A.jpg",
     info: ``,
   },
-
-  {
-    type: "img",
-    src: "/assets/mutesix/slide-2.jpg",
-    info: `<p>I designed a reusable component library, built it with developers, and led efforts to migrate case 
-    studies and marketing content to the web.</p>`,
-  },
  
-  {
-    type: "img",
-    src: "/assets/mutesix/slide-5.jpg",
-    info: `<p>Most decks followed a fast, systemized process, but we still designed custom presentations for key 
-    productions.</p>`,
-  },
 ];
 
 export const miscContent = [
