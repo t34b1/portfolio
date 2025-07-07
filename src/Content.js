@@ -294,7 +294,8 @@ export const m6Content = [
   {
     type: "img",
     src: "/assets/mutesix/slide-4.jpg",
-    info: ``,
+    info: `I partnered with engineers, marketing, and my design team to bring our marketing 
+    assets online. I designed a web component library to make it easier to scale and maintain consistent and on-brand.`,
   },
   {
     type: "img",
@@ -306,6 +307,12 @@ export const m6Content = [
     type: "img",
     src: "/assets/mutesix/slide-4A.jpg",
     info: ``,
+  },
+
+  {
+    type: "img",
+    src: "/assets/mutesix/slide-5.jpg",
+    info: `We also designed custom production pitch decks that aligned with each client’s brand identity.`,
   },
  
 ];
