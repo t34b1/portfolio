@@ -294,13 +294,13 @@ export const m6Content = [
   {
     type: "img",
     src: "/assets/mutesix/slide-4.jpg",
-    info: `I partnered with engineers, marketing, and my design team to bring our marketing 
-    assets online. I designed a web component library to make it easier to scale and maintain consistent and on-brand.`,
+    info: ``,
   },
   {
     type: "img",
     src: "/assets/mutesix/slide-4B.jpg",
-    info: ``,
+    info: `I partnered with engineers, marketing, and my design team to bring our marketing 
+    assets online. I designed a web component library to make it easier to scale and maintain consistent and on-brand.`,
   },
  
   {
